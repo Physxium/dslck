@@ -33,7 +33,7 @@
     .wrap {
       width: min(780px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 28px 0 110px;
+      padding: 28px 0 40px;
     }
 
     header { margin-bottom: 19px; }
@@ -292,39 +292,6 @@
       font-size: 13px;
     }
 
-
-    .coffee-dock {
-      position: fixed;
-      left: 50%;
-      bottom: 12px;
-      transform: translateX(-50%);
-      width: min(420px, calc(100% - 28px));
-      z-index: 50;
-      background: rgba(24, 28, 34, 0.78);
-      border: 1px solid rgba(255,255,255,0.10);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 999px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.28);
-    }
-
-    .coffee-link {
-      display: block;
-      padding: 10px 16px;
-      color: var(--text);
-      text-decoration: none;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.01em;
-    }
-
-    .coffee-link span {
-      color: var(--muted);
-      font-weight: 600;
-      margin-left: 6px;
-    }
-
     footer {
       margin-top: 30px;
       color: var(--muted);
@@ -350,7 +317,7 @@
 <body>
   <main class="wrap">
     <header>
-      <h1>LCK NO SPOILER</h1>
+      <h1>Don't Spoil LCK</h1>
       <p class="subtitle">결과를 보지 않고 원하는 경기 영상으로 바로 이동합니다.</p>
     </header>
 
@@ -665,12 +632,5 @@
 
     loadMatches();
   </script>
-
-  <div class="coffee-dock">
-    <a class="coffee-link" href="#" aria-label="Buy me a coffee">
-      Buy me a coffee <span>이 사이트가 유용했다면</span>
-    </a>
-  </div>
-
 </body>
 </html>
