@@ -1,0 +1,1444 @@
+{
+  "matches": [
+    {
+      "id": "115548128962971871",
+      "start_time": "2026-05-17T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "7주 차",
+      "best_of": 3,
+      "team_a": "KT",
+      "team_b": "HLE",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548128962971871/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037519",
+      "start_time": "2026-05-17T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "7주 차",
+      "best_of": 3,
+      "team_a": "BRO",
+      "team_b": "KRX",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128963037519/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971911",
+      "start_time": "2026-05-20T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "T1",
+      "team_b": "KRX",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548128962971911/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037551",
+      "start_time": "2026-05-20T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "NS",
+      "team_b": "KT",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128963037551/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962906315",
+      "start_time": "2026-05-21T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "BFX",
+      "team_b": "HLE",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128962906315/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037507",
+      "start_time": "2026-05-21T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "DK",
+      "team_b": "BRO",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548128963037507/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971963",
+      "start_time": "2026-05-22T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "DNS",
+      "team_b": "KRX",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128962971963/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037527",
+      "start_time": "2026-05-22T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "KT",
+      "team_b": "GEN",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128963037527/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971927",
+      "start_time": "2026-05-23T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "DK",
+      "team_b": "BFX",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548128962971927/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971875",
+      "start_time": "2026-05-23T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "HLE",
+      "team_b": "NS",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548128962971875/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971947",
+      "start_time": "2026-05-24T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "GEN",
+      "team_b": "DNS",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548128962971947/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971891",
+      "start_time": "2026-05-24T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "8주 차",
+      "best_of": 3,
+      "team_a": "T1",
+      "team_b": "BRO",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548128962971891/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971863",
+      "start_time": "2026-05-27T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "GEN",
+      "team_b": "HLE",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548128962971863/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971939",
+      "start_time": "2026-05-27T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "BFX",
+      "team_b": "KRX",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548128962971939/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971959",
+      "start_time": "2026-05-28T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "DNS",
+      "team_b": "NS",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128962971959/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971903",
+      "start_time": "2026-05-28T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "T1",
+      "team_b": "KT",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548128962971903/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037547",
+      "start_time": "2026-05-29T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "DK",
+      "team_b": "KRX",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548128963037547/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037503",
+      "start_time": "2026-05-29T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "GEN",
+      "team_b": "BRO",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548128963037503/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971955",
+      "start_time": "2026-05-30T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "KT",
+      "team_b": "DNS",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548128962971955/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971883",
+      "start_time": "2026-05-30T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "BFX",
+      "team_b": "T1",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128962971883/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128962971859",
+      "start_time": "2026-05-31T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "HLE",
+      "team_b": "BRO",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548128962971859/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037543",
+      "start_time": "2026-05-31T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "9주 차",
+      "best_of": 3,
+      "team_a": "NS",
+      "team_b": "DK",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128963037543/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037563",
+      "start_time": "2026-06-06T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "토너먼트 스테이지",
+      "best_of": 5,
+      "team_a": "DK",
+      "team_b": "BRO",
+      "score_a": 3,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548128963037563/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037569",
+      "start_time": "2026-06-07T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "토너먼트 스테이지",
+      "best_of": 5,
+      "team_a": "KT",
+      "team_b": "DK",
+      "score_a": 3,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128963037569/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037575",
+      "start_time": "2026-06-12T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "토너먼트 스테이지",
+      "best_of": 5,
+      "team_a": "HLE",
+      "team_b": "T1",
+      "score_a": 3,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548128963037575/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037581",
+      "start_time": "2026-06-13T06:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "토너먼트 스테이지",
+      "best_of": 5,
+      "team_a": "GEN",
+      "team_b": "KT",
+      "score_a": 3,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548128963037581/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548128963037587",
+      "start_time": "2026-06-14T06:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "토너먼트 스테이지",
+      "best_of": 5,
+      "team_a": "T1",
+      "team_b": "GEN",
+      "score_a": 3,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548128963037587/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684661",
+      "start_time": "2026-07-29T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "KRX",
+      "team_b": "NS",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900684661/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553461",
+      "start_time": "2026-07-29T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "T1",
+      "team_b": "KT",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900553461/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684657",
+      "start_time": "2026-07-30T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "BFX",
+      "team_b": "DNS",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548147900684657/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553453",
+      "start_time": "2026-07-30T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "HLE",
+      "team_b": "DK",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900553453/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553457",
+      "start_time": "2026-07-31T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "GEN",
+      "team_b": "T1",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900553457/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684637",
+      "start_time": "2026-07-31T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "KRX",
+      "team_b": "BRO",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548147900684637/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684653",
+      "start_time": "2026-08-01T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "NS",
+      "team_b": "BFX",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548147900684653/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553473",
+      "start_time": "2026-08-01T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "GEN",
+      "team_b": "DK",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900553473/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684645",
+      "start_time": "2026-08-02T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "BRO",
+      "team_b": "DNS",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900684645/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553449",
+      "start_time": "2026-08-02T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "10주 차",
+      "best_of": 3,
+      "team_a": "HLE",
+      "team_b": "KT",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900553449/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684641",
+      "start_time": "2026-08-05T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "NS",
+      "team_b": "BRO",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900684641/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553445",
+      "start_time": "2026-08-05T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "GEN",
+      "team_b": "HLE",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548147900553445/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684665",
+      "start_time": "2026-08-06T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "KRX",
+      "team_b": "DNS",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548147900684665/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553465",
+      "start_time": "2026-08-06T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "T1",
+      "team_b": "DK",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548147900553465/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553469",
+      "start_time": "2026-08-07T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "GEN",
+      "team_b": "KT",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548147900553469/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684633",
+      "start_time": "2026-08-07T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "BRO",
+      "team_b": "BFX",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548147900684633/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900487905",
+      "start_time": "2026-08-08T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "T1",
+      "team_b": "HLE",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900487905/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684669",
+      "start_time": "2026-08-08T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "DNS",
+      "team_b": "NS",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548147900684669/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553477",
+      "start_time": "2026-08-09T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "KT",
+      "team_b": "DK",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900553477/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684649",
+      "start_time": "2026-08-09T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "11주 차",
+      "best_of": 3,
+      "team_a": "BFX",
+      "team_b": "KRX",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548147900684649/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900750245",
+      "start_time": "2026-08-12T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "NS",
+      "team_b": "DNS",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900750245/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684589",
+      "start_time": "2026-08-12T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "DK",
+      "team_b": "KT",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548147900684589/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900750225",
+      "start_time": "2026-08-13T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "KRX",
+      "team_b": "BFX",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900750225/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900619021",
+      "start_time": "2026-08-13T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "HLE",
+      "team_b": "GEN",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900619021/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900619041",
+      "start_time": "2026-08-14T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "DK",
+      "team_b": "T1",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548147900619041/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684681",
+      "start_time": "2026-08-14T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "BRO",
+      "team_b": "NS",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900684681/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900619025",
+      "start_time": "2026-08-15T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "KT",
+      "team_b": "HLE",
+      "score_a": 1,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900619025/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900750233",
+      "start_time": "2026-08-15T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "BFX",
+      "team_b": "DNS",
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900750233/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900619033",
+      "start_time": "2026-08-16T08:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "GEN",
+      "team_b": "T1",
+      "score_a": 2,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/115548147900619033/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684677",
+      "start_time": "2026-08-16T10:00:00Z",
+      "status": "completed",
+      "competition": "LCK",
+      "category": "12주 차",
+      "best_of": 3,
+      "team_a": "BRO",
+      "team_b": "KRX",
+      "score_a": 2,
+      "score_b": 1,
+      "full_vod": "https://lolesports.com/vod/115548147900684677/1",
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900619045",
+      "start_time": "2026-08-19T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "GEN",
+      "team_b": "KT",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684685",
+      "start_time": "2026-08-19T10:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "BRO",
+      "team_b": "DNS",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900619029",
+      "start_time": "2026-08-20T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "DK",
+      "team_b": "HLE",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900750237",
+      "start_time": "2026-08-20T10:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "NS",
+      "team_b": "KRX",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900684673",
+      "start_time": "2026-08-21T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "BRO",
+      "team_b": "BFX",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900619037",
+      "start_time": "2026-08-21T10:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "KT",
+      "team_b": "T1",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900619049",
+      "start_time": "2026-08-22T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "DK",
+      "team_b": "GEN",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900750241",
+      "start_time": "2026-08-22T10:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "DNS",
+      "team_b": "KRX",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900553481",
+      "start_time": "2026-08-23T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "HLE",
+      "team_b": "T1",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "115548147900750229",
+      "start_time": "2026-08-23T10:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "13주 차",
+      "best_of": 3,
+      "team_a": "BFX",
+      "team_b": "NS",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841571",
+      "start_time": "2026-08-26T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이-인",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841577",
+      "start_time": "2026-08-27T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이-인",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841583",
+      "start_time": "2026-08-28T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이-인",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841589",
+      "start_time": "2026-08-29T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이오프",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841595",
+      "start_time": "2026-08-30T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이오프",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841601",
+      "start_time": "2026-09-01T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이오프",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841607",
+      "start_time": "2026-09-02T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이오프",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841613",
+      "start_time": "2026-09-03T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이오프",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841625",
+      "start_time": "2026-09-04T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이오프",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841619",
+      "start_time": "2026-09-05T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이오프",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841631",
+      "start_time": "2026-09-06T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이오프",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841637",
+      "start_time": "2026-09-12T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "플레이오프",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    },
+    {
+      "id": "117030752644841643",
+      "start_time": "2026-09-13T08:00:00Z",
+      "status": "unstarted",
+      "competition": "LCK",
+      "category": "결승",
+      "best_of": 5,
+      "team_a": "TBD",
+      "team_b": "TBD",
+      "score_a": null,
+      "score_b": null,
+      "full_vod": null,
+      "highlights": {
+        "soop": null,
+        "chzzk": null,
+        "youtube": null
+      }
+    }
+  ]
+}
