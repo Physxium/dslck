@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LCK No Spoiler — Prototype v3</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0d0f12;
+      --panel: #15181d;
+      --panel2: #1b1f25;
+      --text: #f3f5f7;
+      --muted: #99a2ad;
+      --line: #292e36;
+      --accent: #eef2f7;
+      --button: #222831;
+      --button-hover: #2a323c;
+      --disabled: #191d22;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, a { font: inherit; }
+
+    .wrap {
+      width: min(780px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 110px;
+    }
+
+    header { margin-bottom: 19px; }
+
+    h1 {
+      margin: 0 0 7px;
+      font-size: 23px;
+      letter-spacing: -0.025em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      padding: 5px;
+      margin: 21px 0 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .tab-btn {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .tab-btn.active {
+      color: #101419;
+      background: var(--accent);
+    }
+
+    .filter-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      margin: 0 0 7px 2px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding: 0 0 12px;
+    }
+
+    .filter-btn {
+      flex: 1 1 calc(20% - 7px);
+      min-width: 58px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: #11151a;
+      border-color: var(--accent);
+      font-weight: 800;
+    }
+
+    .date-group { margin-top: 23px; }
+
+    .date-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--muted);
+      margin: 0 0 9px 2px;
+    }
+
+    .match-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 16px;
+      margin-bottom: 11px;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .teams {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 13px;
+    }
+
+    .team {
+      font-weight: 850;
+      font-size: 19px;
+      letter-spacing: -0.025em;
+    }
+
+    .team.right { text-align: right; }
+
+    .versus {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: center;
+      min-height: 35px;
+      margin-bottom: 14px;
+    }
+
+    .score-btn {
+      min-width: 116px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--text);
+      border-radius: 9px;
+      padding: 7px 11px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .media-area {
+      border-top: 1px solid var(--line);
+      padding-top: 13px;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.45fr);
+      gap: 10px;
+    }
+
+    .media-column + .media-column {
+      border-left: 1px solid var(--line);
+      padding-left: 10px;
+    }
+
+    .media-label {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 7px;
+      line-height: 1;
+    }
+
+    .vod-button,
+    .highlight-button,
+    .pending {
+      min-height: 40px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .vod-button,
+    .highlight-button {
+      color: var(--text);
+      background: var(--button);
+      border: 1px solid var(--line);
+      text-decoration: none;
+    }
+
+    .vod-button:hover,
+    .highlight-button:hover { background: var(--button-hover); }
+
+    .vod-button { width: 100%; }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 5px;
+    }
+
+    .highlight-button, .pending {
+      padding: 6px 4px;
+      min-width: 0;
+    }
+
+    .pending {
+      color: #666f79;
+      background: var(--disabled);
+      border: 1px solid #242a31;
+      cursor: default;
+    }
+
+    .upcoming-card .teams { margin-bottom: 0; }
+
+    .upcoming-time {
+      text-align: center;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 11px;
+    }
+
+    .more-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 22px;
+    }
+
+    .more-btn {
+      min-width: 180px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: var(--panel);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .more-btn:hover { background: var(--panel2); }
+
+    .empty {
+      margin-top: 24px;
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      padding: 28px 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+
+    .coffee-dock {
+      position: fixed;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      width: min(420px, calc(100% - 28px));
+      z-index: 50;
+      background: rgba(24, 28, 34, 0.78);
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 999px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.28);
+    }
+
+    .coffee-link {
+      display: block;
+      padding: 10px 16px;
+      color: var(--text);
+      text-decoration: none;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .coffee-link span {
+      color: var(--muted);
+      font-weight: 600;
+      margin-left: 6px;
+    }
+
+    footer {
+      margin-top: 30px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 420px) {
+      .filter-btn { flex-basis: calc(25% - 7px); }
+    }
+
+    @media (min-width: 640px) {
+      .filter-btn { flex-basis: calc(16.666% - 7px); }
+      .wrap { padding-top: 40px; }
+      h1 { font-size: 27px; }
+      .match-card { padding: 18px 20px; }
+      .team { font-size: 21px; }
+      .media-area { grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>LCK NO SPOILER</h1>
+      <p class="subtitle">결과를 보지 않고 원하는 경기 영상으로 바로 이동합니다.</p>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="recent">최근 경기</button>
+      <button class="tab-btn" data-tab="upcoming">예정 경기</button>
+    </div>
+
+    <div class="filter-label">팀 필터</div>
+    <nav class="filters" id="filters"></nav>
+
+    <section id="matches"></section>
+    <div class="more-wrap" id="moreWrap"></div>
+
+    <footer>
+      Prototype v3 · 경기 및 링크 데이터는 UI 확인용 샘플입니다.
+    </footer>
+  </main>
+
+  <script>
+    const TEAMS = [
+      "BFX", "BRO", "DK", "DNS", "DRX",
+      "GEN", "HLE", "KT", "NS", "T1"
+    ];
+
+    // UI 테스트용 샘플. 실제 서비스에서는 DB/API에서 받아옵니다.
+    const recentMatches = [
+      {id:1,date:"2026-08-17",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"GEN",teamB:"T1",scoreA:2,scoreB:1,links:{full:"#",soop:"#",chzzk:"#",youtube:null}},
+      {id:2,date:"2026-08-17",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"HLE",teamB:"DK",scoreA:0,scoreB:2,links:{full:"#",soop:"#",chzzk:null,youtube:null}},
+      {id:3,date:"2026-08-16",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"KT",teamB:"BFX",scoreA:2,scoreB:0,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:4,date:"2026-08-16",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"NS",teamB:"DRX",scoreA:1,scoreB:2,links:{full:"#",soop:null,chzzk:"#",youtube:"#"}},
+      {id:5,date:"2026-08-15",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"DNS",teamB:"BRO",scoreA:2,scoreB:1,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:6,date:"2026-08-15",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"T1",teamB:"HLE",scoreA:2,scoreB:0,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:7,date:"2026-08-14",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"DK",teamB:"KT",scoreA:2,scoreB:1,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:8,date:"2026-08-14",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"GEN",teamB:"BFX",scoreA:2,scoreB:0,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:9,date:"2026-08-13",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"DRX",teamB:"DNS",scoreA:1,scoreB:2,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:10,date:"2026-08-13",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"BRO",teamB:"NS",scoreA:0,scoreB:2,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:11,date:"2026-08-10",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"T1",teamB:"DK",scoreA:2,scoreB:1,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:12,date:"2026-08-10",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"HLE",teamB:"GEN",scoreA:1,scoreB:2,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:13,date:"2026-08-09",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"KT",teamB:"NS",scoreA:2,scoreB:0,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:14,date:"2026-08-09",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"BFX",teamB:"DRX",scoreA:2,scoreB:1,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:15,date:"2026-08-08",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"DNS",teamB:"GEN",scoreA:0,scoreB:2,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:16,date:"2026-08-08",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"BRO",teamB:"HLE",scoreA:1,scoreB:2,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:17,date:"2026-08-07",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"DK",teamB:"BFX",scoreA:2,scoreB:0,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:18,date:"2026-08-07",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"T1",teamB:"DRX",scoreA:2,scoreB:0,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:19,date:"2026-08-06",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"NS",teamB:"DNS",scoreA:1,scoreB:2,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:20,date:"2026-08-06",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"KT",teamB:"BRO",scoreA:2,scoreB:0,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:21,date:"2026-08-03",category:"LCK 정규시즌 · R3",bestOf:"BO3",teamA:"GEN",teamB:"DK",scoreA:2,scoreB:1,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:22,date:"2026-08-03",category:"LCK 정규시즌 · R3",bestOf:"BO3",teamA:"T1",teamB:"KT",scoreA:1,scoreB:2,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:23,date:"2026-08-02",category:"LCK 정규시즌 · R3",bestOf:"BO3",teamA:"HLE",teamB:"BFX",scoreA:2,scoreB:0,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}},
+      {id:24,date:"2026-08-02",category:"LCK 정규시즌 · R3",bestOf:"BO3",teamA:"DRX",teamB:"BRO",scoreA:2,scoreB:1,links:{full:"#",soop:"#",chzzk:"#",youtube:"#"}}
+    ];
+
+    const upcomingMatches = [
+      {id:101,date:"2026-08-19",time:"17:00",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"GEN",teamB:"DK"},
+      {id:102,date:"2026-08-19",time:"19:30",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"T1",teamB:"HLE"},
+      {id:103,date:"2026-08-20",time:"17:00",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"KT",teamB:"DRX"},
+      {id:104,date:"2026-08-20",time:"19:30",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"NS",teamB:"BFX"},
+      {id:105,date:"2026-08-22",time:"15:00",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"DNS",teamB:"BRO"},
+      {id:106,date:"2026-08-22",time:"17:30",category:"LCK 정규시즌 · R4",bestOf:"BO3",teamA:"GEN",teamB:"KT"}
+    ];
+
+    const state = {
+      tab: "recent",
+      team: "전체",
+      revealed: new Set(),
+      visibleCount: 20
+    };
+
+    const filtersEl = document.getElementById("filters");
+    const matchesEl = document.getElementById("matches");
+    const moreWrapEl = document.getElementById("moreWrap");
+
+    function formatDate(dateString) {
+      const d = new Date(dateString + "T00:00:00");
+      return new Intl.DateTimeFormat("ko-KR", {
+        month: "long",
+        day: "numeric",
+        weekday: "short"
+      }).format(d);
+    }
+
+    function renderFilters() {
+      const all = ["전체", ...TEAMS];
+      filtersEl.innerHTML = all.map(team => `
+        <button class="filter-btn ${state.team === team ? "active" : ""}" data-team="${team}">
+          ${team}
+        </button>
+      `).join("");
+
+      filtersEl.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.team = btn.dataset.team;
+          state.visibleCount = 20;
+          renderFilters();
+          render();
+        });
+      });
+    }
+
+    function renderTabs() {
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.tab === state.tab);
+      });
+    }
+
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.tab = btn.dataset.tab;
+        state.visibleCount = 20;
+        renderTabs();
+        render();
+      });
+    });
+
+    function platformButton(label, url) {
+      return url
+        ? `<a class="highlight-button" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`
+        : `<div class="pending" title="${label} 영상 준비 중">준비 중</div>`;
+    }
+
+    function fullVodButton(url) {
+      return url
+        ? `<a class="vod-button" href="${url}" target="_blank" rel="noopener noreferrer">▶ 바로보기</a>`
+        : `<div class="pending">준비 중</div>`;
+    }
+
+    function recentCard(m) {
+      const revealed = state.revealed.has(m.id);
+      return `
+        <article class="match-card">
+          <div class="meta">
+            <span>${m.category}</span>
+            <span>${m.bestOf}</span>
+          </div>
+
+          <div class="teams">
+            <div class="team">${m.teamA}</div>
+            <div class="versus">VS</div>
+            <div class="team right">${m.teamB}</div>
+          </div>
+
+          <div class="score-row">
+            <button class="score-btn" data-match-id="${m.id}">
+              ${revealed ? `${m.scoreA} : ${m.scoreB}` : "결과 보기"}
+            </button>
+          </div>
+
+          <div class="media-area">
+            <div class="media-column">
+              <div class="media-label">풀영상</div>
+              ${fullVodButton(m.links.full)}
+            </div>
+
+            <div class="media-column">
+              <div class="media-label">하이라이트</div>
+              <div class="highlight-grid">
+                ${platformButton("SOOP", m.links.soop)}
+                ${platformButton("치지직", m.links.chzzk)}
+                ${platformButton("YouTube", m.links.youtube)}
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function upcomingCard(m) {
+      return `
+        <article class="match-card upcoming-card">
+          <div class="meta">
+            <span>${m.category}</span>
+            <span>${m.bestOf}</span>
+          </div>
+
+          <div class="teams">
+            <div class="team">${m.teamA}</div>
+            <div class="versus">VS</div>
+            <div class="team right">${m.teamB}</div>
+          </div>
+
+          <div class="upcoming-time">${m.time}</div>
+        </article>
+      `;
+    }
+
+    function groupByDate(items) {
+      const groups = {};
+      items.forEach(m => {
+        if (!groups[m.date]) groups[m.date] = [];
+        groups[m.date].push(m);
+      });
+      return groups;
+    }
+
+    function renderRecent() {
+      let filtered = recentMatches.filter(m =>
+        state.team === "전체" || m.teamA === state.team || m.teamB === state.team
+      );
+
+      const visible = filtered.slice(0, state.visibleCount);
+
+      if (!visible.length) {
+        matchesEl.innerHTML = `<div class="empty">해당 팀의 최근 경기가 없습니다.</div>`;
+        moreWrapEl.innerHTML = "";
+        return;
+      }
+
+      const groups = groupByDate(visible);
+
+      matchesEl.innerHTML = Object.entries(groups)
+        .sort(([a], [b]) => b.localeCompare(a))
+        .map(([date, items]) => `
+          <div class="date-group">
+            <div class="date-title">${formatDate(date)}</div>
+            ${items.map(recentCard).join("")}
+          </div>
+        `).join("");
+
+      matchesEl.querySelectorAll(".score-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = Number(btn.dataset.matchId);
+          state.revealed.has(id) ? state.revealed.delete(id) : state.revealed.add(id);
+          render();
+        });
+      });
+
+      moreWrapEl.innerHTML = filtered.length > state.visibleCount
+        ? `<button class="more-btn" id="moreBtn">이전 경기 더 보기</button>`
+        : "";
+
+      const moreBtn = document.getElementById("moreBtn");
+      if (moreBtn) {
+        moreBtn.addEventListener("click", () => {
+          state.visibleCount += 20;
+          render();
+        });
+      }
+    }
+
+    function renderUpcoming() {
+      const filtered = upcomingMatches.filter(m =>
+        state.team === "전체" || m.teamA === state.team || m.teamB === state.team
+      );
+
+      if (!filtered.length) {
+        matchesEl.innerHTML = `<div class="empty">해당 팀의 예정 경기가 없습니다.</div>`;
+        moreWrapEl.innerHTML = "";
+        return;
+      }
+
+      const groups = groupByDate(filtered);
+
+      matchesEl.innerHTML = Object.entries(groups)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([date, items]) => `
+          <div class="date-group">
+            <div class="date-title">${formatDate(date)}</div>
+            ${items.map(upcomingCard).join("")}
+          </div>
+        `).join("");
+
+      moreWrapEl.innerHTML = "";
+    }
+
+    function render() {
+      if (state.tab === "recent") renderRecent();
+      else renderUpcoming();
+    }
+
+    renderTabs();
+    renderFilters();
+    render();
+  </script>
+
+  <div class="coffee-dock">
+    <a class="coffee-link" href="#" aria-label="Buy me a coffee">
+      Buy me a coffee <span>이 사이트가 유용했다면</span>
+    </a>
+  </div>
+
+</body>
+</html>
