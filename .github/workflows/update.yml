@@ -13,11 +13,8 @@ on:
     # KST 07:00
     - cron: "0 22 * * *"
 
-    # KST 15:00 ~ 23:00, every 30 minutes
+    # KST 15:00 ~ 23:30, every 30 minutes
     - cron: "0,30 6-14 * * *"
-
-    # KST 23:30
-    - cron: "30 14 * * *"
 
     # KST 24:00
     - cron: "0 15 * * *"
