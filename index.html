@@ -1,636 +1,1518 @@
 <!doctype html>
 <html lang="ko">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Don't Spoil LCK</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #0d0f12;
-      --panel: #15181d;
-      --panel2: #1b1f25;
-      --text: #f3f5f7;
-      --muted: #99a2ad;
-      --line: #292e36;
-      --accent: #eef2f7;
-      --button: #222831;
-      --button-hover: #2a323c;
-      --disabled: #191d22;
-    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    * { box-sizing: border-box; }
+    <title>Don't Spoil LCK</title>
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+    <style>
+        :root {
+            color-scheme: dark;
 
-    button, a { font: inherit; }
+            --bg: #000000;
 
-    .wrap {
-      width: min(780px, calc(100% - 28px));
-      margin: 0 auto;
-      padding: 28px 0 40px;
-    }
+            --panel: #1c1c1e;
+            --panel-soft: #242426;
+            --panel-strong: #2c2c2e;
 
-    header { margin-bottom: 19px; }
+            --text: #f5f5f7;
+            --muted: #8e8e93;
+            --muted-soft: #636366;
 
-    h1 {
-      margin: 0 0 7px;
-      font-size: 23px;
-      letter-spacing: -0.025em;
-    }
+            --line: rgba(255, 255, 255, 0.08);
+            --line-strong: rgba(255, 255, 255, 0.12);
 
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
+            --accent: #f5f5f7;
+            --accent-text: #111111;
 
-    .tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      padding: 5px;
-      margin: 21px 0 14px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-    }
+            --button: #2c2c2e;
+            --button-hover: #3a3a3c;
 
-    .tab-btn {
-      border: 0;
-      border-radius: 8px;
-      padding: 10px;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 14px;
-    }
+            --disabled: #242426;
+        }
 
-    .tab-btn.active {
-      color: #101419;
-      background: var(--accent);
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    .filter-label {
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 700;
-      margin: 0 0 7px 2px;
-    }
+        html {
+            background: var(--bg);
+        }
 
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      padding: 0 0 12px;
-    }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
 
-    .filter-btn {
-      flex: 1 1 calc(20% - 7px);
-      min-width: 58px;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--muted);
-      border-radius: 999px;
-      padding: 7px 11px;
-      font-size: 12px;
-      cursor: pointer;
-    }
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "SF Pro Text",
+                "Pretendard",
+                "Segoe UI",
+                sans-serif;
 
-    .filter-btn.active {
-      background: var(--accent);
-      color: #11151a;
-      border-color: var(--accent);
-      font-weight: 800;
-    }
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
 
-    .date-group { margin-top: 23px; }
+        button,
+        a {
+            font: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    .date-title {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--muted);
-      margin: 0 0 9px 2px;
-    }
+        button {
+            appearance: none;
+        }
 
-    .match-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 15px;
-      padding: 16px;
-      margin-bottom: 11px;
-    }
+        .wrap {
+            width: min(780px, calc(100% - 28px));
+            margin: 0 auto;
+            padding: 32px 0 48px;
+        }
 
-    .meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
+        /* ------------------------------
+       Header
+    ------------------------------ */
 
-    .teams {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 13px;
-    }
+        header {
+            margin-bottom: 22px;
+        }
 
-    .team {
-      font-weight: 850;
-      font-size: 19px;
-      letter-spacing: -0.025em;
-    }
+        h1 {
+            margin: 0 0 7px;
 
-    .team.right { text-align: right; }
+            font-size: 25px;
+            font-weight: 750;
+            letter-spacing: -0.035em;
+        }
 
-    .versus {
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 800;
-    }
+        .subtitle {
+            margin: 0;
 
-    .score-row {
-      display: flex;
-      justify-content: center;
-      min-height: 35px;
-      margin-bottom: 14px;
-    }
+            color: var(--muted);
 
-    .score-btn {
-      min-width: 116px;
-      border: 1px solid var(--line);
-      background: var(--panel2);
-      color: var(--text);
-      border-radius: 9px;
-      padding: 7px 11px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 800;
-    }
+            font-size: 13px;
+            line-height: 1.55;
+            letter-spacing: -0.01em;
+        }
 
-    .media-area {
-      border-top: 1px solid var(--line);
-      padding-top: 13px;
-      display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(0, 1.45fr);
-      gap: 10px;
-    }
+        .developer {
+            margin: 8px 0 0;
 
-    .media-column + .media-column {
-      border-left: 1px solid var(--line);
-      padding-left: 10px;
-    }
+            color: var(--muted-soft);
 
-    .media-label {
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 800;
-      margin-bottom: 7px;
-      line-height: 1;
-    }
+            font-size: 11px;
+            line-height: 1.4;
+        }
 
-    .vod-button,
-    .highlight-button,
-    .pending {
-      min-height: 40px;
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 800;
-    }
+        .developer a {
+            color: var(--muted);
+            text-decoration: none;
 
-    .vod-button,
-    .highlight-button {
-      color: var(--text);
-      background: var(--button);
-      border: 1px solid var(--line);
-      text-decoration: none;
-    }
+            transition: color 0.15s ease;
+        }
 
-    .vod-button:hover,
-    .highlight-button:hover { background: var(--button-hover); }
+        .developer a:hover {
+            color: var(--text);
+        }
 
-    .vod-button { width: 100%; }
+        /* ------------------------------
+       Tabs
+    ------------------------------ */
 
-    .highlight-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 5px;
-    }
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
 
-    .highlight-button, .pending {
-      padding: 6px 4px;
-      min-width: 0;
-    }
+            gap: 3px;
 
-    .pending {
-      color: #666f79;
-      background: var(--disabled);
-      border: 1px solid #242a31;
-      cursor: default;
-      flex-direction: column;
-      gap: 2px;
-    }
+            padding: 3px;
+            margin: 22px 0 16px;
 
-    .pending small {
-      font-size: 9px;
-      font-weight: 700;
-      color: #59616b;
-    }
+            background: rgba(118, 118, 128, 0.24);
 
-    .upcoming-card .teams { margin-bottom: 0; }
+            border-radius: 11px;
+        }
 
-    .upcoming-time {
-      text-align: center;
-      color: var(--text);
-      font-size: 12px;
-      font-weight: 800;
-      margin-top: 11px;
-    }
+        .tab-btn {
+            border: 0;
+            border-radius: 8px;
 
-    .more-wrap {
-      display: flex;
-      justify-content: center;
-      margin-top: 22px;
-    }
+            padding: 9px 10px;
 
-    .more-btn {
-      min-width: 180px;
-      border: 1px solid var(--line);
-      color: var(--text);
-      background: var(--panel);
-      border-radius: 10px;
-      padding: 11px 16px;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
-    }
+            background: transparent;
+            color: var(--muted);
 
-    .more-btn:hover { background: var(--panel2); }
+            cursor: pointer;
 
-    .empty {
-      margin-top: 24px;
-      border: 1px dashed var(--line);
-      border-radius: 14px;
-      padding: 28px 18px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-    }
+            font-size: 13px;
+            font-weight: 650;
 
-    footer {
-      margin-top: 30px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 10px;
-      line-height: 1.6;
-    }
+            transition:
+                background 0.15s ease,
+                color 0.15s ease,
+                box-shadow 0.15s ease;
+        }
 
-    @media (max-width: 420px) {
-      .filter-btn { flex-basis: calc(25% - 7px); }
-    }
+        .tab-btn.active {
+            background: #3a3a3c;
+            color: var(--text);
 
-    @media (min-width: 640px) {
-      .filter-btn { flex-basis: calc(16.666% - 7px); }
-      .wrap { padding-top: 40px; }
-      h1 { font-size: 27px; }
-      .match-card { padding: 18px 20px; }
-      .team { font-size: 21px; }
-      .media-area { grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); }
-    }
-  </style>
+            box-shadow:
+                0 1px 3px rgba(0, 0, 0, 0.32),
+                0 0 0 0.5px rgba(255, 255, 255, 0.04);
+        }
+
+        /* ------------------------------
+       Team Filters
+    ------------------------------ */
+
+        .filter-label {
+            margin: 0 0 8px 2px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+            font-weight: 650;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            padding: 0 0 13px;
+        }
+
+        .filter-btn {
+            flex: 1 1 calc(20% - 7px);
+
+            min-width: 58px;
+
+            border: 1px solid var(--line);
+            border-radius: 999px;
+
+            padding: 7px 11px;
+
+            background: var(--panel);
+            color: var(--muted);
+
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: 550;
+
+            transition:
+                background 0.15s ease,
+                color 0.15s ease,
+                border-color 0.15s ease;
+        }
+
+        .filter-btn:hover {
+            background: var(--panel-soft);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--accent-text);
+
+            border-color: var(--accent);
+
+            font-weight: 700;
+        }
+
+        /* ------------------------------
+       Date
+    ------------------------------ */
+
+        .date-group {
+            margin-top: 25px;
+        }
+
+        .date-title {
+            margin: 0 0 9px 3px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        /* ------------------------------
+       Match Card
+    ------------------------------ */
+
+        .match-card {
+            margin-bottom: 12px;
+            padding: 17px;
+
+            background: var(--panel);
+
+            border: 1px solid var(--line);
+            border-radius: 19px;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 15px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+            font-weight: 550;
+        }
+
+        .teams {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 14px;
+        }
+
+        .team {
+            font-size: 20px;
+            font-weight: 750;
+            letter-spacing: -0.03em;
+        }
+
+        .team.right {
+            text-align: right;
+        }
+
+        .versus {
+            color: var(--muted-soft);
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 0.04em;
+        }
+
+        /* ------------------------------
+       Score
+    ------------------------------ */
+
+        .score-row {
+            display: flex;
+            justify-content: center;
+
+            min-height: 34px;
+
+            margin-bottom: 15px;
+        }
+
+        .score-btn {
+            min-width: 116px;
+
+            border: 1px solid var(--line);
+            border-radius: 10px;
+
+            padding: 7px 12px;
+
+            background: var(--panel-strong);
+            color: var(--text);
+
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: 650;
+
+            transition:
+                background 0.15s ease,
+                transform 0.12s ease;
+        }
+
+        .score-btn:hover {
+            background: #3a3a3c;
+        }
+
+        .score-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ------------------------------
+       Media Area
+    ------------------------------ */
+
+        .media-area {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 0.9fr) minmax(0, 1.45fr);
+
+            gap: 11px;
+
+            padding-top: 14px;
+
+            border-top: 1px solid var(--line);
+        }
+
+        .media-column {
+            min-width: 0;
+        }
+
+        .media-column+.media-column {
+            padding-left: 11px;
+
+            border-left: 1px solid var(--line);
+        }
+
+        .media-label {
+            margin-bottom: 8px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+            font-weight: 650;
+
+            letter-spacing: 0.055em;
+            line-height: 1;
+        }
+
+        /* ------------------------------
+       Full VOD
+    ------------------------------ */
+
+        .full-vod-box {
+            min-height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 4px 0 2px;
+        }
+
+        .full-vod-text {
+            color: var(--text);
+
+            font-size: 12px;
+            font-weight: 650;
+
+            letter-spacing: 0.025em;
+        }
+
+        .play-button {
+            width: 35px;
+            height: 35px;
+
+            flex: 0 0 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+            color: #000000;
+
+            text-decoration: none;
+
+            transition:
+                transform 0.15s ease,
+                opacity 0.15s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.06);
+        }
+
+        .play-button:active {
+            transform: scale(0.95);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+
+            margin-left: 2px;
+
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid currentColor;
+        }
+
+        .full-vod-box.pending-vod {
+            color: var(--muted-soft);
+        }
+
+        .play-button.disabled {
+            background: var(--panel-strong);
+            color: var(--muted-soft);
+
+            pointer-events: none;
+        }
+
+        .pending-vod .full-vod-text {
+            color: var(--muted-soft);
+        }
+
+        /* ------------------------------
+       Highlights
+    ------------------------------ */
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 6px;
+        }
+
+        .highlight-button,
+        .pending {
+            min-width: 0;
+            min-height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 6px 4px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            font-size: 11px;
+            font-weight: 650;
+        }
+
+        .highlight-button {
+            border: 1px solid var(--line);
+
+            background: var(--button);
+            color: var(--text);
+
+            text-decoration: none;
+
+            transition:
+                background 0.15s ease,
+                transform 0.12s ease;
+        }
+
+        .highlight-button:hover {
+            background: var(--button-hover);
+        }
+
+        .highlight-button:active {
+            transform: scale(0.97);
+        }
+
+        .pending {
+            flex-direction: column;
+
+            gap: 2px;
+
+            border: 1px solid rgba(255, 255, 255, 0.04);
+
+            background: var(--disabled);
+            color: var(--muted-soft);
+
+            cursor: default;
+        }
+
+        .pending small {
+            color: #545458;
+
+            font-size: 9px;
+            font-weight: 550;
+        }
+
+        /* ------------------------------
+       Upcoming
+    ------------------------------ */
+
+        .upcoming-card .teams {
+            margin-bottom: 0;
+        }
+
+        .upcoming-time {
+            margin-top: 12px;
+
+            color: var(--text);
+
+            text-align: center;
+
+            font-size: 12px;
+            font-weight: 650;
+        }
+
+        /* ------------------------------
+       More / Empty
+    ------------------------------ */
+
+        .more-wrap {
+            display: flex;
+            justify-content: center;
+
+            margin-top: 23px;
+        }
+
+        .more-btn {
+            min-width: 180px;
+
+            border: 1px solid var(--line);
+            border-radius: 12px;
+
+            padding: 11px 17px;
+
+            background: var(--panel);
+            color: var(--text);
+
+            cursor: pointer;
+
+            font-size: 13px;
+            font-weight: 650;
+
+            transition: background 0.15s ease;
+        }
+
+        .more-btn:hover {
+            background: var(--panel-soft);
+        }
+
+        .empty {
+            margin-top: 25px;
+
+            padding: 29px 18px;
+
+            border: 1px solid var(--line);
+            border-radius: 17px;
+
+            background: var(--panel);
+
+            color: var(--muted);
+
+            text-align: center;
+
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* ------------------------------
+       Footer
+    ------------------------------ */
+
+        footer {
+            margin-top: 34px;
+
+            color: var(--muted-soft);
+
+            text-align: center;
+
+            font-size: 10px;
+            line-height: 1.65;
+        }
+
+        /* ------------------------------
+       Responsive
+    ------------------------------ */
+
+        @media (max-width: 420px) {
+            .filter-btn {
+                flex-basis: calc(25% - 7px);
+            }
+
+            .match-card {
+                padding: 16px;
+            }
+
+            .media-area {
+                grid-template-columns:
+                    minmax(0, 0.85fr) minmax(0, 1.5fr);
+            }
+
+            .media-column+.media-column {
+                padding-left: 9px;
+            }
+
+            .highlight-grid {
+                gap: 5px;
+            }
+
+            .highlight-button,
+            .pending {
+                font-size: 10px;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .wrap {
+                padding-top: 42px;
+            }
+
+            h1 {
+                font-size: 29px;
+            }
+
+            .filter-btn {
+                flex-basis: calc(16.666% - 7px);
+            }
+
+            .match-card {
+                padding: 19px 21px;
+            }
+
+            .team {
+                font-size: 22px;
+            }
+
+            .media-area {
+                grid-template-columns:
+                    minmax(0, 0.8fr) minmax(0, 1.6fr);
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <main class="wrap">
-    <header>
-      <h1>Don't Spoil LCK</h1>
-      <p class="subtitle">결과를 보지 않고 원하는 경기 영상으로 바로 이동합니다.</p>
-    </header>
+    <main class="wrap">
 
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="recent">최근 경기</button>
-      <button class="tab-btn" data-tab="upcoming">예정 경기</button>
-    </div>
+        <header>
+            <h1>Don't Spoil LCK</h1>
 
-    <div class="filter-label">팀 필터</div>
-    <nav class="filters" id="filters"></nav>
+            <p class="subtitle">
+                결과를 보지 않고 원하는 경기 영상으로 바로 이동합니다.
+            </p>
 
-    <section id="matches"></section>
-    <div class="more-wrap" id="moreWrap"></div>
+            <p class="developer">
+                Developed by
+                <a href="https://physxium.github.io/console/" target="_blank" rel="noopener noreferrer">
+                    Physxium (Han Gyeol Lee)
+                </a>
+            </p>
+        </header>
 
-    <footer>
-      경기 일정과 VOD 정보는 LoL Esports 데이터를 기반으로 제공합니다.
-    </footer>
-  </main>
 
-  <script>
-    const TEAMS = [
-      "BFX", "BRO", "DK", "DNS", "GEN",
-      "HLE", "KRX", "KT", "NS", "T1"
-    ];
-
-    const state = {
-      tab: "recent",
-      team: "전체",
-      revealed: new Set(),
-      visibleCount: 20
-    };
-
-    let allMatches = [];
-
-    const filtersEl = document.getElementById("filters");
-    const matchesEl = document.getElementById("matches");
-    const moreWrapEl = document.getElementById("moreWrap");
-
-    function kstParts(startTime) {
-      const parts = new Intl.DateTimeFormat("en-CA", {
-        timeZone: "Asia/Seoul",
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        hourCycle: "h23"
-      }).formatToParts(new Date(startTime));
-
-      const get = type => parts.find(p => p.type === type)?.value ?? "";
-
-      return {
-        date: `${get("year")}-${get("month")}-${get("day")}`,
-        time: `${get("hour")}:${get("minute")}`
-      };
-    }
-
-    function formatDate(dateString) {
-      const [year, month, day] = dateString.split("-").map(Number);
-      const d = new Date(Date.UTC(year, month - 1, day));
-
-      return new Intl.DateTimeFormat("ko-KR", {
-        timeZone: "UTC",
-        month: "long",
-        day: "numeric",
-        weekday: "short"
-      }).format(d);
-    }
-
-    function displayCategory(m) {
-      return `${m.competition} · ${m.category}`;
-    }
-
-    function renderFilters() {
-      const all = ["전체", ...TEAMS];
-
-      filtersEl.innerHTML = all.map(team => `
-        <button class="filter-btn ${state.team === team ? "active" : ""}" data-team="${team}">
-          ${team}
-        </button>
-      `).join("");
-
-      filtersEl.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          state.team = btn.dataset.team;
-          state.visibleCount = 20;
-          renderFilters();
-          render();
-        });
-      });
-    }
-
-    function renderTabs() {
-      document.querySelectorAll(".tab-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.tab === state.tab);
-      });
-    }
-
-    document.querySelectorAll(".tab-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        state.tab = btn.dataset.tab;
-        state.visibleCount = 20;
-        renderTabs();
-        render();
-      });
-    });
-
-    function platformButton(label, url) {
-      return url
-        ? `<a class="highlight-button" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`
-        : `<div class="pending" title="${label} 영상 준비 중">
-             <span>${label}</span>
-             <small>(준비 중)</small>
-           </div>`;
-    }
-
-    function fullVodButton(url) {
-      return url
-        ? `<a class="vod-button" href="${url}" target="_blank" rel="noopener noreferrer">▶ 바로보기</a>`
-        : `<div class="pending"><span>풀영상</span><small>(준비 중)</small></div>`;
-    }
-
-    function recentCard(m) {
-      const revealed = state.revealed.has(m.id);
-
-      return `
-        <article class="match-card">
-          <div class="meta">
-            <span>${displayCategory(m)}</span>
-            <span>BO${m.best_of}</span>
-          </div>
-
-          <div class="teams">
-            <div class="team">${m.team_a}</div>
-            <div class="versus">VS</div>
-            <div class="team right">${m.team_b}</div>
-          </div>
-
-          <div class="score-row">
-            <button class="score-btn" data-match-id="${m.id}">
-              ${revealed ? `${m.score_a} : ${m.score_b}` : "결과 보기"}
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="recent">
+                최근 경기
             </button>
-          </div>
 
-          <div class="media-area">
-            <div class="media-column">
-              <div class="media-label">풀영상</div>
-              ${fullVodButton(m.full_vod)}
-            </div>
+            <button class="tab-btn" data-tab="upcoming">
+                예정 경기
+            </button>
+        </div>
 
-            <div class="media-column">
-              <div class="media-label">하이라이트</div>
-              <div class="highlight-grid">
-                ${platformButton("SOOP", m.highlights?.soop)}
-                ${platformButton("치지직", m.highlights?.chzzk)}
-                ${platformButton("YouTube", m.highlights?.youtube)}
-              </div>
-            </div>
-          </div>
-        </article>
-      `;
-    }
 
-    function upcomingCard(m) {
-      const { time } = kstParts(m.start_time);
+        <div class="filter-label">
+            팀 필터
+        </div>
 
-      return `
-        <article class="match-card upcoming-card">
-          <div class="meta">
-            <span>${displayCategory(m)}</span>
-            <span>BO${m.best_of}</span>
-          </div>
+        <nav class="filters" id="filters"></nav>
 
-          <div class="teams">
-            <div class="team">${m.team_a}</div>
-            <div class="versus">VS</div>
-            <div class="team right">${m.team_b}</div>
-          </div>
 
-          <div class="upcoming-time">${time}</div>
-        </article>
-      `;
-    }
+        <section id="matches"></section>
 
-    function groupByDate(items) {
-      const groups = {};
 
-      items.forEach(m => {
-        const { date } = kstParts(m.start_time);
-        if (!groups[date]) groups[date] = [];
-        groups[date].push(m);
-      });
+        <div class="more-wrap" id="moreWrap"></div>
 
-      return groups;
-    }
 
-    function teamMatchesFilter(m) {
-      return state.team === "전체" ||
-        m.team_a === state.team ||
-        m.team_b === state.team;
-    }
+        <footer>
+            경기 일정과 VOD 정보는 LoL Esports 데이터를 기반으로 제공합니다.
+        </footer>
 
-    function renderRecent() {
-      const filtered = allMatches
-        .filter(m => m.status === "completed")
-        .filter(teamMatchesFilter)
-        .sort((a, b) => new Date(b.start_time) - new Date(a.start_time));
+    </main>
 
-      const visible = filtered.slice(0, state.visibleCount);
 
-      if (!visible.length) {
-        matchesEl.innerHTML = `<div class="empty">해당 팀의 최근 경기가 없습니다.</div>`;
-        moreWrapEl.innerHTML = "";
-        return;
-      }
+    <script>
+        const TEAMS = [
+            "BFX",
+            "BRO",
+            "DK",
+            "DNS",
+            "GEN",
+            "HLE",
+            "KRX",
+            "KT",
+            "NS",
+            "T1"
+        ];
 
-      const groups = groupByDate(visible);
 
-      matchesEl.innerHTML = Object.entries(groups)
-        .sort(([a], [b]) => b.localeCompare(a))
-        .map(([date, items]) => `
-          <div class="date-group">
-            <div class="date-title">${formatDate(date)}</div>
-            ${items.map(recentCard).join("")}
-          </div>
-        `).join("");
+        const state = {
+            tab: "recent",
+            team: "전체",
+            revealed: new Set(),
+            visibleCount: 20
+        };
 
-      matchesEl.querySelectorAll(".score-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = btn.dataset.matchId;
-          state.revealed.has(id) ? state.revealed.delete(id) : state.revealed.add(id);
-          render();
-        });
-      });
 
-      moreWrapEl.innerHTML = filtered.length > state.visibleCount
-        ? `<button class="more-btn" id="moreBtn">이전 경기 더 보기</button>`
-        : "";
+        let allMatches = [];
 
-      const moreBtn = document.getElementById("moreBtn");
-      if (moreBtn) {
-        moreBtn.addEventListener("click", () => {
-          state.visibleCount += 20;
-          render();
-        });
-      }
-    }
 
-    function renderUpcoming() {
-      const filtered = allMatches
-        .filter(m => m.status === "unstarted" || m.status === "scheduled")
-        .filter(teamMatchesFilter)
-        .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+        const filtersEl =
+            document.getElementById("filters");
 
-      if (!filtered.length) {
-        matchesEl.innerHTML = `<div class="empty">해당 팀의 예정 경기가 없습니다.</div>`;
-        moreWrapEl.innerHTML = "";
-        return;
-      }
+        const matchesEl =
+            document.getElementById("matches");
 
-      const groups = groupByDate(filtered);
+        const moreWrapEl =
+            document.getElementById("moreWrap");
 
-      matchesEl.innerHTML = Object.entries(groups)
-        .sort(([a], [b]) => a.localeCompare(b))
-        .map(([date, items]) => `
-          <div class="date-group">
-            <div class="date-title">${formatDate(date)}</div>
-            ${items.map(upcomingCard).join("")}
-          </div>
-        `).join("");
 
-      moreWrapEl.innerHTML = "";
-    }
+        /* ------------------------------
+           Time
+        ------------------------------ */
 
-    function render() {
-      if (state.tab === "recent") renderRecent();
-      else renderUpcoming();
-    }
+        function kstParts(startTime) {
 
-    async function loadMatches() {
-      matchesEl.innerHTML = `<div class="empty">경기 데이터를 불러오는 중입니다.</div>`;
+            const parts =
+                new Intl.DateTimeFormat("en-CA", {
+                    timeZone: "Asia/Seoul",
 
-      try {
-        const response = await fetch("./matches.json", { cache: "no-store" });
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
 
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+                    hour: "2-digit",
+                    minute: "2-digit",
+
+                    hourCycle: "h23"
+                })
+                    .formatToParts(
+                        new Date(startTime)
+                    );
+
+
+            const get = type =>
+                parts.find(
+                    p => p.type === type
+                )?.value ?? "";
+
+
+            return {
+                date:
+                    `${get("year")}-${get("month")}-${get("day")}`,
+
+                time:
+                    `${get("hour")}:${get("minute")}`
+            };
         }
 
-        const data = await response.json();
 
-        if (!Array.isArray(data.matches)) {
-          throw new Error("matches 배열이 없습니다.");
+        function formatDate(dateString) {
+
+            const [year, month, day] =
+                dateString
+                    .split("-")
+                    .map(Number);
+
+
+            const d =
+                new Date(
+                    Date.UTC(
+                        year,
+                        month - 1,
+                        day
+                    )
+                );
+
+
+            return new Intl.DateTimeFormat(
+                "ko-KR",
+                {
+                    timeZone: "UTC",
+
+                    month: "long",
+                    day: "numeric",
+                    weekday: "short"
+                }
+            ).format(d);
         }
 
-        allMatches = data.matches;
 
-        renderTabs();
-        renderFilters();
-        render();
-      } catch (error) {
-        console.error(error);
-        matchesEl.innerHTML = `
-          <div class="empty">
-            경기 데이터를 불러오지 못했습니다.<br>
-            잠시 후 다시 시도해 주세요.
+        function displayCategory(m) {
+            return `${m.competition} · ${m.category}`;
+        }
+
+
+        /* ------------------------------
+           Filters
+        ------------------------------ */
+
+        function renderFilters() {
+
+            const all =
+                ["전체", ...TEAMS];
+
+
+            filtersEl.innerHTML =
+                all.map(team => `
+          <button
+            class="
+              filter-btn
+              ${state.team === team ? "active" : ""}
+            "
+            data-team="${team}"
+          >
+            ${team}
+          </button>
+        `).join("");
+
+
+            filtersEl
+                .querySelectorAll(".filter-btn")
+                .forEach(btn => {
+
+                    btn.addEventListener(
+                        "click",
+                        () => {
+
+                            state.team =
+                                btn.dataset.team;
+
+                            state.visibleCount = 20;
+
+                            renderFilters();
+                            render();
+                        }
+                    );
+
+                });
+        }
+
+
+        /* ------------------------------
+           Tabs
+        ------------------------------ */
+
+        function renderTabs() {
+
+            document
+                .querySelectorAll(".tab-btn")
+                .forEach(btn => {
+
+                    btn.classList.toggle(
+                        "active",
+                        btn.dataset.tab === state.tab
+                    );
+
+                });
+        }
+
+
+        document
+            .querySelectorAll(".tab-btn")
+            .forEach(btn => {
+
+                btn.addEventListener(
+                    "click",
+                    () => {
+
+                        state.tab =
+                            btn.dataset.tab;
+
+                        state.visibleCount = 20;
+
+                        renderTabs();
+                        render();
+                    }
+                );
+
+            });
+
+
+        /* ------------------------------
+           Media Buttons
+        ------------------------------ */
+
+        function platformButton(label, url) {
+
+            return url
+
+                ? `
+          <a
+            class="highlight-button"
+            href="${url}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ${label}
+          </a>
+        `
+
+                : `
+          <div
+            class="pending"
+            title="${label} 영상 준비 중"
+          >
+            <span>
+              ${label}
+            </span>
+
+            <small>
+              준비 중
+            </small>
           </div>
         `;
-        moreWrapEl.innerHTML = "";
-      }
-    }
+        }
 
-    loadMatches();
-  </script>
+
+        function fullVodButton(url) {
+
+            return url
+
+                ? `
+          <div class="full-vod-box">
+
+            <span class="full-vod-text">
+              FULL VOD
+            </span>
+
+            <a
+              class="play-button"
+              href="${url}"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Full VOD 재생"
+            >
+              <span class="play-icon"></span>
+            </a>
+
+          </div>
+        `
+
+                : `
+          <div class="full-vod-box pending-vod">
+
+            <span class="full-vod-text">
+              FULL VOD
+            </span>
+
+            <span
+              class="play-button disabled"
+              aria-hidden="true"
+            >
+              <span class="play-icon"></span>
+            </span>
+
+          </div>
+        `;
+        }
+
+
+        /* ------------------------------
+           Recent Card
+        ------------------------------ */
+
+        function recentCard(m) {
+
+            const revealed =
+                state.revealed.has(m.id);
+
+
+            return `
+        <article class="match-card">
+
+          <div class="meta">
+
+            <span>
+              ${displayCategory(m)}
+            </span>
+
+            <span>
+              BO${m.best_of}
+            </span>
+
+          </div>
+
+
+          <div class="teams">
+
+            <div class="team">
+              ${m.team_a}
+            </div>
+
+            <div class="versus">
+              VS
+            </div>
+
+            <div class="team right">
+              ${m.team_b}
+            </div>
+
+          </div>
+
+
+          <div class="score-row">
+
+            <button
+              class="score-btn"
+              data-match-id="${m.id}"
+            >
+              ${revealed
+                    ? `${m.score_a} : ${m.score_b}`
+                    : "결과 보기"
+                }
+            </button>
+
+          </div>
+
+
+          <div class="media-area">
+
+            <div class="media-column">
+
+              <div class="media-label">
+                풀영상
+              </div>
+
+              ${fullVodButton(m.full_vod)}
+
+            </div>
+
+
+            <div class="media-column">
+
+              <div class="media-label">
+                하이라이트
+              </div>
+
+              <div class="highlight-grid">
+
+                ${platformButton(
+                    "SOOP",
+                    m.highlights?.soop
+                )}
+
+                ${platformButton(
+                    "치지직",
+                    m.highlights?.chzzk
+                )}
+
+                ${platformButton(
+                    "YouTube",
+                    m.highlights?.youtube
+                )}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+      `;
+        }
+
+
+        /* ------------------------------
+           Upcoming Card
+        ------------------------------ */
+
+        function upcomingCard(m) {
+
+            const { time } =
+                kstParts(m.start_time);
+
+
+            return `
+        <article
+          class="
+            match-card
+            upcoming-card
+          "
+        >
+
+          <div class="meta">
+
+            <span>
+              ${displayCategory(m)}
+            </span>
+
+            <span>
+              BO${m.best_of}
+            </span>
+
+          </div>
+
+
+          <div class="teams">
+
+            <div class="team">
+              ${m.team_a}
+            </div>
+
+            <div class="versus">
+              VS
+            </div>
+
+            <div class="team right">
+              ${m.team_b}
+            </div>
+
+          </div>
+
+
+          <div class="upcoming-time">
+            ${time}
+          </div>
+
+        </article>
+      `;
+        }
+
+
+        /* ------------------------------
+           Group
+        ------------------------------ */
+
+        function groupByDate(items) {
+
+            const groups = {};
+
+
+            items.forEach(m => {
+
+                const { date } =
+                    kstParts(m.start_time);
+
+
+                if (!groups[date]) {
+                    groups[date] = [];
+                }
+
+
+                groups[date].push(m);
+            });
+
+
+            return groups;
+        }
+
+
+        function teamMatchesFilter(m) {
+
+            return (
+                state.team === "전체" ||
+                m.team_a === state.team ||
+                m.team_b === state.team
+            );
+        }
+
+
+        /* ------------------------------
+           Recent
+        ------------------------------ */
+
+        function renderRecent() {
+
+            const filtered =
+                allMatches
+
+                    .filter(
+                        m => m.status === "completed"
+                    )
+
+                    .filter(teamMatchesFilter)
+
+                    .sort(
+                        (a, b) =>
+                            new Date(b.start_time) -
+                            new Date(a.start_time)
+                    );
+
+
+            const visible =
+                filtered.slice(
+                    0,
+                    state.visibleCount
+                );
+
+
+            if (!visible.length) {
+
+                matchesEl.innerHTML = `
+          <div class="empty">
+            해당 팀의 최근 경기가 없습니다.
+          </div>
+        `;
+
+                moreWrapEl.innerHTML = "";
+
+                return;
+            }
+
+
+            const groups =
+                groupByDate(visible);
+
+
+            matchesEl.innerHTML =
+                Object.entries(groups)
+
+                    .sort(
+                        ([a], [b]) =>
+                            b.localeCompare(a)
+                    )
+
+                    .map(
+                        ([date, items]) => `
+
+              <div class="date-group">
+
+                <div class="date-title">
+                  ${formatDate(date)}
+                </div>
+
+                ${items
+                                .map(recentCard)
+                                .join("")
+                            }
+
+              </div>
+
+            `
+                    )
+                    .join("");
+
+
+            matchesEl
+                .querySelectorAll(".score-btn")
+                .forEach(btn => {
+
+                    btn.addEventListener(
+                        "click",
+                        () => {
+
+                            const id =
+                                btn.dataset.matchId;
+
+
+                            if (state.revealed.has(id)) {
+                                state.revealed.delete(id);
+                            } else {
+                                state.revealed.add(id);
+                            }
+
+
+                            render();
+                        }
+                    );
+
+                });
+
+
+            moreWrapEl.innerHTML =
+                filtered.length > state.visibleCount
+
+                    ? `
+            <button
+              class="more-btn"
+              id="moreBtn"
+            >
+              이전 경기 더 보기
+            </button>
+          `
+
+                    : "";
+
+
+            const moreBtn =
+                document.getElementById("moreBtn");
+
+
+            if (moreBtn) {
+
+                moreBtn.addEventListener(
+                    "click",
+                    () => {
+
+                        state.visibleCount += 20;
+
+                        render();
+                    }
+                );
+
+            }
+        }
+
+
+        /* ------------------------------
+           Upcoming
+        ------------------------------ */
+
+        function renderUpcoming() {
+
+            const filtered =
+                allMatches
+
+                    .filter(
+                        m =>
+                            m.status === "unstarted" ||
+                            m.status === "scheduled"
+                    )
+
+                    .filter(teamMatchesFilter)
+
+                    .sort(
+                        (a, b) =>
+                            new Date(a.start_time) -
+                            new Date(b.start_time)
+                    );
+
+
+            if (!filtered.length) {
+
+                matchesEl.innerHTML = `
+          <div class="empty">
+            해당 팀의 예정 경기가 없습니다.
+          </div>
+        `;
+
+                moreWrapEl.innerHTML = "";
+
+                return;
+            }
+
+
+            const groups =
+                groupByDate(filtered);
+
+
+            matchesEl.innerHTML =
+                Object.entries(groups)
+
+                    .sort(
+                        ([a], [b]) =>
+                            a.localeCompare(b)
+                    )
+
+                    .map(
+                        ([date, items]) => `
+
+              <div class="date-group">
+
+                <div class="date-title">
+                  ${formatDate(date)}
+                </div>
+
+                ${items
+                                .map(upcomingCard)
+                                .join("")
+                            }
+
+              </div>
+
+            `
+                    )
+                    .join("");
+
+
+            moreWrapEl.innerHTML = "";
+        }
+
+
+        /* ------------------------------
+           Render
+        ------------------------------ */
+
+        function render() {
+
+            if (state.tab === "recent") {
+                renderRecent();
+            } else {
+                renderUpcoming();
+            }
+        }
+
+
+        /* ------------------------------
+           Load Data
+        ------------------------------ */
+
+        async function loadMatches() {
+
+            matchesEl.innerHTML = `
+        <div class="empty">
+          경기 데이터를 불러오는 중입니다.
+        </div>
+      `;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "./matches.json",
+                        {
+                            cache: "no-store"
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `HTTP ${response.status}`
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (!Array.isArray(data.matches)) {
+
+                    throw new Error(
+                        "matches 배열이 없습니다."
+                    );
+
+                }
+
+
+                allMatches =
+                    data.matches;
+
+
+                renderTabs();
+                renderFilters();
+                render();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                matchesEl.innerHTML = `
+          <div class="empty">
+
+            경기 데이터를 불러오지 못했습니다.
+            <br>
+
+            잠시 후 다시 시도해 주세요.
+
+          </div>
+        `;
+
+
+                moreWrapEl.innerHTML = "";
+            }
+        }
+
+
+        loadMatches();
+    </script>
+
 </body>
+
 </html>
