@@ -1,0 +1,59 @@
+name: Update LCK matches
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # KST 01:00
+    - cron: "0 16 * * *"
+
+    # KST 02:00
+    - cron: "0 17 * * *"
+
+    # KST 07:00
+    - cron: "0 22 * * *"
+
+    # KST 15:00 ~ 23:00, every 30 minutes
+    - cron: "0,30 6-14 * * *"
+
+    # KST 23:30
+    - cron: "30 14 * * *"
+
+    # KST 24:00
+    - cron: "0 15 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update matches
+        run: python scripts/update_matches.py
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add matches.json
+          git commit -m "Update LCK matches"
+          git push
