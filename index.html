@@ -459,6 +459,22 @@
             padding: 0 4px 0 2px;
         }
 
+                .full-vod-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1px;
+        }
+
+        .full-vod-pending {
+            color: #545458;
+
+            font-size: 9px;
+            font-weight: 550;
+            line-height: 1.2;
+        }     
+        
+        
         .full-vod-text {
             color: var(--text);
 
@@ -1202,24 +1218,29 @@
 
 
         function pendingFullVod() {
+                return `
+        <div class="full-vod-box pending-vod">
 
-            return `
-                <div class="full-vod-box pending-vod">
+            <div class="full-vod-info">
+                <span class="full-vod-text">
+                    FULL VOD
+                </span>
 
-                    <span class="full-vod-text">
-                        FULL VOD
-                    </span>
+                <span class="full-vod-pending">
+                    준비 중
+                </span>
+            </div>
 
-                    <span
-                        class="play-button disabled"
-                        aria-hidden="true"
-                    >
-                        <span class="play-icon"></span>
-                    </span>
+            <span
+                class="play-button disabled"
+                aria-hidden="true"
+            >
+                <span class="play-icon"></span>
+            </span>
 
-                </div>
-            `;
-        }
+        </div>
+    `;
+            }
 
 
         /* ------------------------------
