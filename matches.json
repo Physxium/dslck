@@ -2981,7 +2981,7 @@
       "team_b": "KT",
       "score_a": 2,
       "score_b": 1,
-      "full_vod": null,
+      "full_vod": "https://lolesports.com/vod/115548147900619045/1",
       "highlights": {
         "soop": "https://vod.sooplive.com/player/204752503",
         "chzzk": "https://chzzk.naver.com/video/14773268",
@@ -2991,15 +2991,15 @@
     {
       "id": "115548147900684685",
       "start_time": "2026-08-19T10:00:00Z",
-      "status": "inProgress",
+      "status": "completed",
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
       "team_a": "DNS",
       "team_b": "BRO",
-      "score_a": null,
-      "score_b": null,
-      "full_vod": null,
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900684685/1",
       "highlights": {
         "soop": null,
         "chzzk": null,
