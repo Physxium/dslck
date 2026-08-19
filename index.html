@@ -5,21 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <title>Don't Spoil LCK | 스포일러 없는 LCK 다시보기</title>
 
-<title>Don't Spoil LCK | 스포일러 없는 LCK 다시보기</title>
+    <meta name="description"
+        content="경기 결과를 보지 않고 LCK 공식 풀 VOD와 SOOP, 치지직, YouTube 하이라이트를 찾아볼 수 있는 스포일러 없는 LCK 다시보기 사이트.">
 
-<meta
-    name="description"
-    content="경기 결과를 보지 않고 LCK 공식 풀 VOD와 SOOP, 치지직, YouTube 하이라이트를 찾아볼 수 있는 스포일러 없는 LCK 다시보기 사이트."
->
+    <link rel="canonical" href="https://physxium.github.io/dslck/">
 
-<link
-    rel="canonical"
-    href="https://physxium.github.io/dslck/"
->
-
-    <script async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6908864739979028"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6908864739979028"
         crossorigin="anonymous"></script>
 
     <style>
@@ -46,6 +39,10 @@
             --button-hover: #3a3a3c;
 
             --disabled: #242426;
+
+            --live: #ff453a;
+            --live-soft: rgba(255, 69, 58, 0.12);
+            --live-line: rgba(255, 69, 58, 0.28);
         }
 
         * {
@@ -91,8 +88,8 @@
         }
 
         /* ------------------------------
-       Header
-    ------------------------------ */
+           Header
+        ------------------------------ */
 
         header {
             margin-bottom: 22px;
@@ -137,8 +134,8 @@
         }
 
         /* ------------------------------
-       Tabs
-    ------------------------------ */
+           Tabs
+        ------------------------------ */
 
         .tabs {
             display: grid;
@@ -184,8 +181,8 @@
         }
 
         /* ------------------------------
-       Team Filters
-    ------------------------------ */
+           Team Filters
+        ------------------------------ */
 
         .filter-label {
             margin: 0 0 8px 2px;
@@ -243,8 +240,8 @@
         }
 
         /* ------------------------------
-       Date
-    ------------------------------ */
+           Date
+        ------------------------------ */
 
         .date-group {
             margin-top: 25px;
@@ -260,8 +257,8 @@
         }
 
         /* ------------------------------
-       Match Card
-    ------------------------------ */
+           Match Card
+        ------------------------------ */
 
         .match-card {
             margin-bottom: 12px;
@@ -319,8 +316,8 @@
         }
 
         /* ------------------------------
-       Score
-    ------------------------------ */
+           Score / LIVE
+        ------------------------------ */
 
         .score-row {
             display: flex;
@@ -360,9 +357,43 @@
             transform: scale(0.97);
         }
 
+        .live-status {
+            min-width: 116px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 6px;
+
+            padding: 7px 12px;
+
+            border: 1px solid var(--live-line);
+            border-radius: 10px;
+
+            background: var(--live-soft);
+            color: var(--live);
+
+            font-size: 12px;
+            font-weight: 750;
+
+            letter-spacing: 0.02em;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+
+            flex: 0 0 7px;
+
+            border-radius: 50%;
+
+            background: var(--live);
+        }
+
         /* ------------------------------
-       Media Area
-    ------------------------------ */
+           Media Area
+        ------------------------------ */
 
         .media-area {
             display: grid;
@@ -399,8 +430,8 @@
         }
 
         /* ------------------------------
-       Full VOD
-    ------------------------------ */
+           Full VOD
+        ------------------------------ */
 
         .full-vod-box {
             min-height: 40px;
@@ -478,8 +509,8 @@
         }
 
         /* ------------------------------
-       Highlights
-    ------------------------------ */
+           Highlights
+        ------------------------------ */
 
         .highlight-grid {
             display: grid;
@@ -549,8 +580,8 @@
         }
 
         /* ------------------------------
-       Upcoming
-    ------------------------------ */
+           Upcoming
+        ------------------------------ */
 
         .upcoming-card .teams {
             margin-bottom: 0;
@@ -568,8 +599,8 @@
         }
 
         /* ------------------------------
-       More / Empty
-    ------------------------------ */
+           More / Empty
+        ------------------------------ */
 
         .more-wrap {
             display: flex;
@@ -620,8 +651,8 @@
         }
 
         /* ------------------------------
-       Footer
-    ------------------------------ */
+           Footer
+        ------------------------------ */
 
         footer {
             margin-top: 34px;
@@ -637,96 +668,95 @@
         /* ------------------------------
            Floating Bar
         ------------------------------ */
-        
+
         .floating-bar {
             position: fixed;
-        
+
             left: 50%;
             bottom: calc(14px + env(safe-area-inset-bottom));
-        
+
             transform: translateX(-50%);
-        
+
             width: min(520px, calc(100% - 28px));
-        
+
             display: grid;
             grid-template-columns: 1.7fr 1fr;
-        
+
             gap: 3px;
             padding: 4px;
-        
+
             background: rgba(44, 44, 46, 0.94);
-        
+
             border: 1px solid var(--line-strong);
             border-radius: 14px;
-        
+
             box-shadow:
                 0 8px 28px rgba(0, 0, 0, 0.45);
-        
+
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
-        
+
             z-index: 1000;
         }
-        
+
         .floating-link {
             min-width: 0;
-        
+
             display: flex;
             align-items: center;
             justify-content: center;
-        
+
             padding: 10px 12px;
-        
+
             border-radius: 10px;
-        
+
             color: var(--text);
-        
+
             font-size: 12px;
             font-weight: 650;
-        
+
             text-decoration: none;
-        
+
             white-space: nowrap;
-        
+
             transition:
                 background 0.15s ease,
                 transform 0.12s ease;
         }
-        
+
         .floating-link:hover {
             background: var(--button-hover);
         }
-        
+
         .floating-link:active {
             transform: scale(0.97);
         }
-        
+
         .floating-link.support {
             background: var(--text);
             color: var(--accent-text);
         }
-        
+
         .floating-link.support:hover {
             background: #e5e5e7;
         }
-        
+
+        /* ------------------------------
+           Responsive
+        ------------------------------ */
+
         @media (max-width: 420px) {
+
             .floating-bar {
                 width: calc(100% - 20px);
                 bottom: calc(10px + env(safe-area-inset-bottom));
             }
-        
+
             .floating-link {
                 padding: 10px 8px;
                 font-size: 11px;
             }
-        }
 
-        /* ------------------------------
-       Responsive
-    ------------------------------ */
-
-        @media (max-width: 420px) {
             .filter-btn {
                 flex-basis: calc(25% - 7px);
             }
@@ -755,6 +785,7 @@
         }
 
         @media (min-width: 640px) {
+
             .wrap {
                 padding-top: 42px;
             }
@@ -784,9 +815,11 @@
 </head>
 
 <body>
+
     <main class="wrap">
 
         <header>
+
             <h1>Don't Spoil LCK</h1>
 
             <p class="subtitle">
@@ -799,10 +832,12 @@
                     Physxium (Han Gyeol Lee)
                 </a>
             </p>
+
         </header>
 
 
         <div class="tabs">
+
             <button class="tab-btn active" data-tab="recent">
                 최근 경기
             </button>
@@ -810,6 +845,7 @@
             <button class="tab-btn" data-tab="upcoming">
                 예정 경기
             </button>
+
         </div>
 
 
@@ -831,29 +867,24 @@
         </footer>
 
     </main>
+
+
     <nav class="floating-bar" aria-label="Support and developer links">
 
-        <a
-            class="floating-link support"
-            href="https://ctee.kr/place/physxium"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+        <a class="floating-link support" href="https://ctee.kr/place/physxium" target="_blank"
+            rel="noopener noreferrer">
             유용했다면 ☕ 커피 후원
         </a>
 
-        <a
-            class="floating-link"
-            href="https://physxium.github.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+        <a class="floating-link" href="https://physxium.github.io/" target="_blank" rel="noopener noreferrer">
             개발자 정보
         </a>
 
     </nav>
-    
+
+
     <script>
+
         const TEAMS = [
             "BFX",
             "BRO",
@@ -896,18 +927,21 @@
         function kstParts(startTime) {
 
             const parts =
-                new Intl.DateTimeFormat("en-CA", {
-                    timeZone: "Asia/Seoul",
+                new Intl.DateTimeFormat(
+                    "en-CA",
+                    {
+                        timeZone: "Asia/Seoul",
 
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit",
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
 
-                    hour: "2-digit",
-                    minute: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
 
-                    hourCycle: "h23"
-                })
+                        hourCycle: "h23"
+                    }
+                )
                     .formatToParts(
                         new Date(startTime)
                     );
@@ -926,6 +960,14 @@
                 time:
                     `${get("hour")}:${get("minute")}`
             };
+        }
+
+
+        function getTodayKstDate() {
+
+            return kstParts(
+                new Date().toISOString()
+            ).date;
         }
 
 
@@ -965,6 +1007,15 @@
         }
 
 
+        function isTodayMatch(m) {
+
+            return (
+                kstParts(m.start_time).date ===
+                getTodayKstDate()
+            );
+        }
+
+
         /* ------------------------------
            Filters
         ------------------------------ */
@@ -977,16 +1028,16 @@
 
             filtersEl.innerHTML =
                 all.map(team => `
-          <button
-            class="
-              filter-btn
-              ${state.team === team ? "active" : ""}
-            "
-            data-team="${team}"
-          >
-            ${team}
-          </button>
-        `).join("");
+                    <button
+                        class="
+                            filter-btn
+                            ${state.team === team ? "active" : ""}
+                        "
+                        data-team="${team}"
+                    >
+                        ${team}
+                    </button>
+                `).join("");
 
 
             filtersEl
@@ -1060,30 +1111,49 @@
             return url
 
                 ? `
-          <a
-            class="highlight-button"
-            href="${url}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ${label}
-          </a>
-        `
+                    <a
+                        class="highlight-button"
+                        href="${url}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        ${label}
+                    </a>
+                `
 
                 : `
-          <div
-            class="pending"
-            title="${label} 영상 준비 중"
-          >
-            <span>
-              ${label}
-            </span>
+                    <div
+                        class="pending"
+                        title="${label} 영상 준비 중"
+                    >
+                        <span>
+                            ${label}
+                        </span>
 
-            <small>
-              준비 중
-            </small>
-          </div>
-        `;
+                        <small>
+                            준비 중
+                        </small>
+                    </div>
+                `;
+        }
+
+
+        function pendingPlatform(label) {
+
+            return `
+                <div
+                    class="pending"
+                    title="${label} 영상 준비 중"
+                >
+                    <span>
+                        ${label}
+                    </span>
+
+                    <small>
+                        준비 중
+                    </small>
+                </div>
+            `;
         }
 
 
@@ -1092,46 +1162,52 @@
             return url
 
                 ? `
-          <div class="full-vod-box">
+                    <div class="full-vod-box">
 
-            <span class="full-vod-text">
-              FULL VOD
-            </span>
+                        <span class="full-vod-text">
+                            FULL VOD
+                        </span>
 
-            <a
-              class="play-button"
-              href="${url}"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Full VOD 재생"
-            >
-              <span class="play-icon"></span>
-            </a>
+                        <a
+                            class="play-button"
+                            href="${url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Full VOD 재생"
+                        >
+                            <span class="play-icon"></span>
+                        </a>
 
-          </div>
-        `
+                    </div>
+                `
 
-                : `
-          <div class="full-vod-box pending-vod">
+                : pendingFullVod();
+        }
 
-            <span class="full-vod-text">
-              FULL VOD
-            </span>
 
-            <span
-              class="play-button disabled"
-              aria-hidden="true"
-            >
-              <span class="play-icon"></span>
-            </span>
+        function pendingFullVod() {
 
-          </div>
-        `;
+            return `
+                <div class="full-vod-box pending-vod">
+
+                    <span class="full-vod-text">
+                        FULL VOD
+                    </span>
+
+                    <span
+                        class="play-button disabled"
+                        aria-hidden="true"
+                    >
+                        <span class="play-icon"></span>
+                    </span>
+
+                </div>
+            `;
         }
 
 
         /* ------------------------------
-           Recent Card
+           Completed Card
         ------------------------------ */
 
         function recentCard(m) {
@@ -1141,97 +1217,185 @@
 
 
             return `
-        <article class="match-card">
+                <article class="match-card">
 
-          <div class="meta">
+                    <div class="meta">
 
-            <span>
-              ${displayCategory(m)}
-            </span>
+                        <span>
+                            ${displayCategory(m)}
+                        </span>
 
-            <span>
-              BO${m.best_of}
-            </span>
+                        <span>
+                            BO${m.best_of}
+                        </span>
 
-          </div>
-
-
-          <div class="teams">
-
-            <div class="team">
-              ${m.team_a}
-            </div>
-
-            <div class="versus">
-              VS
-            </div>
-
-            <div class="team right">
-              ${m.team_b}
-            </div>
-
-          </div>
+                    </div>
 
 
-          <div class="score-row">
+                    <div class="teams">
 
-            <button
-              class="score-btn"
-              data-match-id="${m.id}"
-            >
-              ${revealed
+                        <div class="team">
+                            ${m.team_a}
+                        </div>
+
+                        <div class="versus">
+                            VS
+                        </div>
+
+                        <div class="team right">
+                            ${m.team_b}
+                        </div>
+
+                    </div>
+
+
+                    <div class="score-row">
+
+                        <button
+                            class="score-btn"
+                            data-match-id="${m.id}"
+                        >
+                            ${revealed
                     ? `${m.score_a} : ${m.score_b}`
                     : "결과 보기"
                 }
-            </button>
+                        </button>
 
-          </div>
-
-
-          <div class="media-area">
-
-            <div class="media-column">
-
-              <div class="media-label">
-                풀영상
-              </div>
-
-              ${fullVodButton(m.full_vod)}
-
-            </div>
+                    </div>
 
 
-            <div class="media-column">
+                    <div class="media-area">
 
-              <div class="media-label">
-                하이라이트
-              </div>
+                        <div class="media-column">
 
-              <div class="highlight-grid">
+                            <div class="media-label">
+                                풀영상
+                            </div>
 
-                ${platformButton(
+                            ${fullVodButton(m.full_vod)}
+
+                        </div>
+
+
+                        <div class="media-column">
+
+                            <div class="media-label">
+                                하이라이트
+                            </div>
+
+                            <div class="highlight-grid">
+
+                                ${platformButton(
                     "SOOP",
                     m.highlights?.soop
                 )}
 
-                ${platformButton(
+                                ${platformButton(
                     "치지직",
                     m.highlights?.chzzk
                 )}
 
-                ${platformButton(
+                                ${platformButton(
                     "YouTube",
                     m.highlights?.youtube
                 )}
 
-              </div>
+                            </div>
 
-            </div>
+                        </div>
 
-          </div>
+                    </div>
 
-        </article>
-      `;
+                </article>
+            `;
+        }
+
+
+        /* ------------------------------
+           LIVE Card
+        ------------------------------ */
+
+        function liveCard(m) {
+
+            return `
+                <article class="match-card live-card">
+
+                    <div class="meta">
+
+                        <span>
+                            ${displayCategory(m)}
+                        </span>
+
+                        <span>
+                            BO${m.best_of}
+                        </span>
+
+                    </div>
+
+
+                    <div class="teams">
+
+                        <div class="team">
+                            ${m.team_a}
+                        </div>
+
+                        <div class="versus">
+                            VS
+                        </div>
+
+                        <div class="team right">
+                            ${m.team_b}
+                        </div>
+
+                    </div>
+
+
+                    <div class="score-row">
+
+                        <div
+                            class="live-status"
+                            aria-label="경기 진행 중"
+                        >
+                            <span class="live-dot"></span>
+                            LIVE
+                        </div>
+
+                    </div>
+
+
+                    <div class="media-area">
+
+                        <div class="media-column">
+
+                            <div class="media-label">
+                                풀영상
+                            </div>
+
+                            ${pendingFullVod()}
+
+                        </div>
+
+
+                        <div class="media-column">
+
+                            <div class="media-label">
+                                하이라이트
+                            </div>
+
+                            <div class="highlight-grid">
+
+                                ${pendingPlatform("SOOP")}
+                                ${pendingPlatform("치지직")}
+                                ${pendingPlatform("YouTube")}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+            `;
         }
 
 
@@ -1246,49 +1410,70 @@
 
 
             return `
-        <article
-          class="
-            match-card
-            upcoming-card
-          "
-        >
+                <article
+                    class="
+                        match-card
+                        upcoming-card
+                    "
+                >
 
-          <div class="meta">
+                    <div class="meta">
 
-            <span>
-              ${displayCategory(m)}
-            </span>
+                        <span>
+                            ${displayCategory(m)}
+                        </span>
 
-            <span>
-              BO${m.best_of}
-            </span>
+                        <span>
+                            BO${m.best_of}
+                        </span>
 
-          </div>
-
-
-          <div class="teams">
-
-            <div class="team">
-              ${m.team_a}
-            </div>
-
-            <div class="versus">
-              VS
-            </div>
-
-            <div class="team right">
-              ${m.team_b}
-            </div>
-
-          </div>
+                    </div>
 
 
-          <div class="upcoming-time">
-            ${time}
-          </div>
+                    <div class="teams">
 
-        </article>
-      `;
+                        <div class="team">
+                            ${m.team_a}
+                        </div>
+
+                        <div class="versus">
+                            VS
+                        </div>
+
+                        <div class="team right">
+                            ${m.team_b}
+                        </div>
+
+                    </div>
+
+
+                    <div class="upcoming-time">
+                        ${time}
+                    </div>
+
+                </article>
+            `;
+        }
+
+
+        /* ------------------------------
+           Card Selector
+        ------------------------------ */
+
+        function recentTabCard(m) {
+
+            if (m.status === "inProgress") {
+                return liveCard(m);
+            }
+
+            if (
+                m.status === "unstarted" ||
+                m.status === "scheduled"
+            ) {
+                return upcomingCard(m);
+            }
+
+            return recentCard(m);
         }
 
 
@@ -1336,20 +1521,79 @@
 
         function renderRecent() {
 
+            const today =
+                getTodayKstDate();
+
+
             const filtered =
                 allMatches
 
-                    .filter(
-                        m => m.status === "completed"
-                    )
+                    .filter(m => {
+
+                        const matchDate =
+                            kstParts(m.start_time).date;
+
+
+                        /*
+                         * 오늘 경기:
+                         * 상태와 관계없이 모두 표시
+                         */
+                        if (matchDate === today) {
+                            return true;
+                        }
+
+
+                        /*
+                         * 오늘 이전:
+                         * 종료된 경기만 표시
+                         */
+                        return (
+                            matchDate < today &&
+                            m.status === "completed"
+                        );
+                    })
 
                     .filter(teamMatchesFilter)
 
-                    .sort(
-                        (a, b) =>
+                    .sort((a, b) => {
+
+                        const dateA =
+                            kstParts(a.start_time).date;
+
+                        const dateB =
+                            kstParts(b.start_time).date;
+
+
+                        /*
+                         * 날짜 자체는 최신 날짜부터
+                         */
+                        if (dateA !== dateB) {
+                            return dateB.localeCompare(dateA);
+                        }
+
+
+                        /*
+                         * 오늘 경기는 실제 경기 순서대로
+                         * 앞 경기 → 뒷 경기
+                         */
+                        if (dateA === today) {
+
+                            return (
+                                new Date(a.start_time) -
+                                new Date(b.start_time)
+                            );
+                        }
+
+
+                        /*
+                         * 과거 같은 날짜에서는
+                         * 최근 경기부터
+                         */
+                        return (
                             new Date(b.start_time) -
                             new Date(a.start_time)
-                    );
+                        );
+                    });
 
 
             const visible =
@@ -1362,10 +1606,10 @@
             if (!visible.length) {
 
                 matchesEl.innerHTML = `
-          <div class="empty">
-            해당 팀의 최근 경기가 없습니다.
-          </div>
-        `;
+                    <div class="empty">
+                        해당 팀의 최근 경기가 없습니다.
+                    </div>
+                `;
 
                 moreWrapEl.innerHTML = "";
 
@@ -1388,24 +1632,28 @@
                     .map(
                         ([date, items]) => `
 
-              <div class="date-group">
+                            <div class="date-group">
 
-                <div class="date-title">
-                  ${formatDate(date)}
-                </div>
+                                <div class="date-title">
+                                    ${formatDate(date)}
+                                </div>
 
-                ${items
-                                .map(recentCard)
+                                ${items
+                                .map(recentTabCard)
                                 .join("")
                             }
 
-              </div>
+                            </div>
 
-            `
+                        `
                     )
                     .join("");
 
 
+            /*
+             * 완료 경기 카드에만 존재하는
+             * 결과 보기 버튼 처리
+             */
             matchesEl
                 .querySelectorAll(".score-btn")
                 .forEach(btn => {
@@ -1436,13 +1684,13 @@
                 filtered.length > state.visibleCount
 
                     ? `
-            <button
-              class="more-btn"
-              id="moreBtn"
-            >
-              이전 경기 더 보기
-            </button>
-          `
+                        <button
+                            class="more-btn"
+                            id="moreBtn"
+                        >
+                            이전 경기 더 보기
+                        </button>
+                    `
 
                     : "";
 
@@ -1494,10 +1742,10 @@
             if (!filtered.length) {
 
                 matchesEl.innerHTML = `
-          <div class="empty">
-            해당 팀의 예정 경기가 없습니다.
-          </div>
-        `;
+                    <div class="empty">
+                        해당 팀의 예정 경기가 없습니다.
+                    </div>
+                `;
 
                 moreWrapEl.innerHTML = "";
 
@@ -1520,20 +1768,20 @@
                     .map(
                         ([date, items]) => `
 
-              <div class="date-group">
+                            <div class="date-group">
 
-                <div class="date-title">
-                  ${formatDate(date)}
-                </div>
+                                <div class="date-title">
+                                    ${formatDate(date)}
+                                </div>
 
-                ${items
+                                ${items
                                 .map(upcomingCard)
                                 .join("")
                             }
 
-              </div>
+                            </div>
 
-            `
+                        `
                     )
                     .join("");
 
@@ -1563,10 +1811,10 @@
         async function loadMatches() {
 
             matchesEl.innerHTML = `
-        <div class="empty">
-          경기 데이터를 불러오는 중입니다.
-        </div>
-      `;
+                <div class="empty">
+                    경기 데이터를 불러오는 중입니다.
+                </div>
+            `;
 
 
             try {
@@ -1617,15 +1865,15 @@
 
 
                 matchesEl.innerHTML = `
-          <div class="empty">
+                    <div class="empty">
 
-            경기 데이터를 불러오지 못했습니다.
-            <br>
+                        경기 데이터를 불러오지 못했습니다.
+                        <br>
 
-            잠시 후 다시 시도해 주세요.
+                        잠시 후 다시 시도해 주세요.
 
-          </div>
-        `;
+                    </div>
+                `;
 
 
                 moreWrapEl.innerHTML = "";
@@ -1634,6 +1882,7 @@
 
 
         loadMatches();
+
     </script>
 
 </body>
