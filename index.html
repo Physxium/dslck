@@ -76,7 +76,7 @@
         .wrap {
             width: min(780px, calc(100% - 28px));
             margin: 0 auto;
-            padding: 32px 0 48px;
+            padding: 32px 0 110px;
         }
 
         /* ------------------------------
@@ -624,6 +624,94 @@
         }
 
         /* ------------------------------
+           Floating Bar
+        ------------------------------ */
+        
+        .floating-bar {
+            position: fixed;
+        
+            left: 50%;
+            bottom: calc(14px + env(safe-area-inset-bottom));
+        
+            transform: translateX(-50%);
+        
+            width: min(520px, calc(100% - 28px));
+        
+            display: grid;
+            grid-template-columns: 1.7fr 1fr;
+        
+            gap: 3px;
+            padding: 4px;
+        
+            background: rgba(44, 44, 46, 0.94);
+        
+            border: 1px solid var(--line-strong);
+            border-radius: 14px;
+        
+            box-shadow:
+                0 8px 28px rgba(0, 0, 0, 0.45);
+        
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        
+            z-index: 1000;
+        }
+        
+        .floating-link {
+            min-width: 0;
+        
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        
+            padding: 10px 12px;
+        
+            border-radius: 10px;
+        
+            color: var(--text);
+        
+            font-size: 12px;
+            font-weight: 650;
+        
+            text-decoration: none;
+        
+            white-space: nowrap;
+        
+            transition:
+                background 0.15s ease,
+                transform 0.12s ease;
+        }
+        
+        .floating-link:hover {
+            background: var(--button-hover);
+        }
+        
+        .floating-link:active {
+            transform: scale(0.97);
+        }
+        
+        .floating-link.support {
+            background: var(--text);
+            color: var(--accent-text);
+        }
+        
+        .floating-link.support:hover {
+            background: #e5e5e7;
+        }
+        
+        @media (max-width: 420px) {
+            .floating-bar {
+                width: calc(100% - 20px);
+                bottom: calc(10px + env(safe-area-inset-bottom));
+            }
+        
+            .floating-link {
+                padding: 10px 8px;
+                font-size: 11px;
+            }
+        }
+
+        /* ------------------------------
        Responsive
     ------------------------------ */
 
@@ -732,8 +820,28 @@
         </footer>
 
     </main>
+    <nav class="floating-bar" aria-label="Support and developer links">
 
+        <a
+            class="floating-link support"
+            href="https://ctee.kr/place/physxium"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            유용했다면 ☕ 커피 후원
+        </a>
 
+        <a
+            class="floating-link"
+            href="https://physxium.github.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            개발자 정보
+        </a>
+
+    </nav>
+    
     <script>
         const TEAMS = [
             "BFX",
