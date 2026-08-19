@@ -13,19 +13,22 @@
     <link rel="canonical" href="https://physxium.github.io/dslck/">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3B8PYM8HGZ"></script>
-    
+
     <meta property="og:type" content="website">
     <meta property="og:title" content="Don't Spoil LCK | 스포일러 없는 LCK 다시보기">
     <meta property="og:description"
         content="경기 결과를 보지 않고 LCK 공식 VOD와 SOOP, 치지직, YouTube 하이라이트를 찾아볼 수 있는 스포일러 없는 LCK 다시보기 사이트.">
     <meta property="og:url" content="https://physxium.github.io/dslck/">
-    
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-3B8PYM8HGZ');
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag("js", new Date());
+        gtag("config", "G-3B8PYM8HGZ");
     </script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6908864739979028"
@@ -373,8 +376,7 @@
             transform: scale(0.97);
         }
 
-
-                .live-status {
+        .live-status {
             min-width: 116px;
 
             display: flex;
@@ -429,7 +431,6 @@
             font-size: 9px;
         }
 
-
         /* ------------------------------
            Media Area
         ------------------------------ */
@@ -482,10 +483,11 @@
             padding: 0 4px 0 2px;
         }
 
-                .full-vod-info {
+        .full-vod-info {
             display: flex;
             flex-direction: column;
             justify-content: center;
+
             gap: 1px;
         }
 
@@ -495,9 +497,8 @@
             font-size: 9px;
             font-weight: 550;
             line-height: 1.2;
-        }     
-        
-        
+        }
+
         .full-vod-text {
             color: var(--text);
 
@@ -721,7 +722,7 @@
         }
 
         /* ------------------------------
-           Floating Bar
+           Floating Support
         ------------------------------ */
 
         .floating-bar {
@@ -732,12 +733,8 @@
 
             transform: translateX(-50%);
 
-            width: min(520px, calc(100% - 28px));
+            width: min(260px, calc(100% - 40px));
 
-            display: grid;
-            grid-template-columns: 1.7fr 1fr;
-
-            gap: 3px;
             padding: 4px;
 
             background: rgba(44, 44, 46, 0.94);
@@ -803,7 +800,7 @@
         @media (max-width: 420px) {
 
             .floating-bar {
-                width: calc(100% - 20px);
+                width: min(240px, calc(100% - 32px));
                 bottom: calc(10px + env(safe-area-inset-bottom));
             }
 
@@ -924,15 +921,11 @@
     </main>
 
 
-    <nav class="floating-bar" aria-label="Support and developer links">
+    <nav class="floating-bar" aria-label="Support">
 
         <a class="floating-link support" href="https://ctee.kr/place/physxium" target="_blank"
             rel="noopener noreferrer">
             유용했다면 ☕ 커피 후원
-        </a>
-
-        <a class="floating-link" href="https://physxium.github.io/" target="_blank" rel="noopener noreferrer">
-            개발자 정보
         </a>
 
     </nav>
@@ -1241,29 +1234,32 @@
 
 
         function pendingFullVod() {
-                return `
-        <div class="full-vod-box pending-vod">
 
-            <div class="full-vod-info">
-                <span class="full-vod-text">
-                    FULL VOD
-                </span>
+            return `
+                <div class="full-vod-box pending-vod">
 
-                <span class="full-vod-pending">
-                    준비 중
-                </span>
-            </div>
+                    <div class="full-vod-info">
 
-            <span
-                class="play-button disabled"
-                aria-hidden="true"
-            >
-                <span class="play-icon"></span>
-            </span>
+                        <span class="full-vod-text">
+                            FULL VOD
+                        </span>
 
-        </div>
-    `;
-            }
+                        <span class="full-vod-pending">
+                            준비 중
+                        </span>
+
+                    </div>
+
+                    <span
+                        class="play-button disabled"
+                        aria-hidden="true"
+                    >
+                        <span class="play-icon"></span>
+                    </span>
+
+                </div>
+            `;
+        }
 
 
         /* ------------------------------
@@ -1598,19 +1594,11 @@
                             kstParts(m.start_time).date;
 
 
-                        /*
-                         * 오늘 경기:
-                         * 상태와 관계없이 모두 표시
-                         */
                         if (matchDate === today) {
                             return true;
                         }
 
 
-                        /*
-                         * 오늘 이전:
-                         * 종료된 경기만 표시
-                         */
                         return (
                             matchDate < today &&
                             m.status === "completed"
@@ -1628,18 +1616,11 @@
                             kstParts(b.start_time).date;
 
 
-                        /*
-                         * 날짜 자체는 최신 날짜부터
-                         */
                         if (dateA !== dateB) {
                             return dateB.localeCompare(dateA);
                         }
 
 
-                        /*
-                         * 오늘 경기는 실제 경기 순서대로
-                         * 앞 경기 → 뒷 경기
-                         */
                         if (dateA === today) {
 
                             return (
@@ -1649,10 +1630,6 @@
                         }
 
 
-                        /*
-                         * 과거 같은 날짜에서는
-                         * 최근 경기부터
-                         */
                         return (
                             new Date(b.start_time) -
                             new Date(a.start_time)
@@ -1714,10 +1691,6 @@
                     .join("");
 
 
-            /*
-             * 완료 경기 카드에만 존재하는
-             * 결과 보기 버튼 처리
-             */
             matchesEl
                 .querySelectorAll(".score-btn")
                 .forEach(btn => {
