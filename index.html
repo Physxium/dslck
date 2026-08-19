@@ -373,7 +373,8 @@
             transform: scale(0.97);
         }
 
-        .live-status {
+
+                .live-status {
             min-width: 116px;
 
             display: flex;
@@ -394,6 +395,21 @@
             font-weight: 750;
 
             letter-spacing: 0.02em;
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                background 0.15s ease,
+                transform 0.12s ease;
+        }
+
+        .live-status:hover {
+            background: rgba(255, 69, 58, 0.18);
+        }
+
+        .live-status:active {
+            transform: scale(0.97);
         }
 
         .live-dot {
@@ -406,6 +422,13 @@
 
             background: var(--live);
         }
+
+        .live-play {
+            margin-left: 2px;
+
+            font-size: 9px;
+        }
+
 
         /* ------------------------------
            Media Area
@@ -1389,13 +1412,17 @@
 
                     <div class="score-row">
 
-                        <div
+                        <a
                             class="live-status"
-                            aria-label="경기 진행 중"
+                            href="https://lolesports.com/live/lck"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="LCK 라이브 보기"
                         >
                             <span class="live-dot"></span>
                             LIVE
-                        </div>
+                            <span class="live-play">▶</span>
+                        </a>
 
                     </div>
 
