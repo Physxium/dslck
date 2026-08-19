@@ -10,6 +10,7 @@ API_URL = "https://api-channel.sooplive.com/v1.1/channel/aflol/vod/normal"
 MATCHES_PATH = Path(__file__).resolve().parent.parent / "matches.json"
 
 REGULAR_SEASON_START = "2026-04-01T00:00:00Z"
+SOOP_REGULAR_SEASON_START = "2026-04-01 00:00:00"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0",
@@ -98,6 +99,7 @@ def main():
 
     page = 1
     max_pages = 100
+    stop_search = False
 
     while page <= max_pages:
         print(f"SOOP page {page} 확인 중...")
@@ -119,6 +121,16 @@ def main():
         for video in videos:
             title_no = video.get("titleNo")
             title = video.get("titleName")
+            reg_date = video.get("regDate")
+
+            # 2026 정규리그 시작 이전 영상까지 내려가면 탐색 종료
+            if reg_date and reg_date < SOOP_REGULAR_SEASON_START:
+                print(
+                    "2026 정규리그 이전 영상에 도달해 "
+                    "탐색을 종료합니다."
+                )
+                stop_search = True
+                break
 
             if not title_no or not title:
                 continue
@@ -156,7 +168,9 @@ def main():
                     f"[MISMATCH] 매치 {match_number}: "
                     f"JSON={team_a} vs {team_b}"
                 )
-                print(f"           SOOP={title}")
+                print(
+                    f"           SOOP={title}"
+                )
 
                 mismatch_count += 1
                 continue
@@ -181,8 +195,13 @@ def main():
                     f"{team_a} vs {team_b}"
                 )
 
+        if stop_search:
+            break
+
         if len(found_match_numbers) >= len(regular_matches):
-            print("모든 정규리그 매치 하이라이트를 찾았습니다.")
+            print(
+                "모든 정규리그 매치 하이라이트를 찾았습니다."
+            )
             break
 
         page += 1
@@ -192,7 +211,10 @@ def main():
     print()
     print("==============================")
     print(f"SOOP 링크 변경: {updated_count}개")
-    print(f"이번 실행에서 찾은 매치: {len(found_match_numbers)}개")
+    print(
+        f"이번 실행에서 찾은 매치: "
+        f"{len(found_match_numbers)}개"
+    )
     print(f"팀 불일치: {mismatch_count}개")
     print("==============================")
 

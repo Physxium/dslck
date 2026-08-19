@@ -50,6 +50,7 @@ jobs:
       - name: Update SOOP highlights
         run: python scripts/update_soop.py
 
+
       - name: Commit changes
         run: |
           if git diff --quiet; then
@@ -62,4 +63,7 @@ jobs:
 
           git add matches.json
           git commit -m "Update LCK matches"
+
+          git pull --rebase origin main
           git push
+
