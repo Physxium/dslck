@@ -3017,7 +3017,7 @@
       "team_b": "DK",
       "score_a": 2,
       "score_b": 0,
-      "full_vod": null,
+      "full_vod": "https://lolesports.com/vod/115548147900619029/1",
       "highlights": {
         "soop": "https://vod.sooplive.com/player/204838357",
         "chzzk": "https://chzzk.naver.com/video/14788874",
@@ -3027,15 +3027,15 @@
     {
       "id": "115548147900750237",
       "start_time": "2026-08-20T10:00:00Z",
-      "status": "inProgress",
+      "status": "completed",
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
       "team_a": "KRX",
       "team_b": "NS",
-      "score_a": null,
-      "score_b": null,
-      "full_vod": null,
+      "score_a": 0,
+      "score_b": 2,
+      "full_vod": "https://lolesports.com/vod/115548147900750237/1",
       "highlights": {
         "soop": null,
         "chzzk": null,
