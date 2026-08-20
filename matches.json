@@ -3020,7 +3020,7 @@
       "full_vod": null,
       "highlights": {
         "soop": null,
-        "chzzk": null,
+        "chzzk": "https://chzzk.naver.com/video/14788874",
         "youtube": null
       }
     },
@@ -3031,8 +3031,8 @@
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
-      "team_a": "NS",
-      "team_b": "KRX",
+      "team_a": "KRX",
+      "team_b": "NS",
       "score_a": null,
       "score_b": null,
       "full_vod": null,
