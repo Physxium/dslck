@@ -3055,8 +3055,8 @@
       "score_b": 1,
       "full_vod": null,
       "highlights": {
-        "soop": null,
-        "chzzk": null,
+        "soop": "https://vod.sooplive.com/player/204929495",
+        "chzzk": "https://chzzk.naver.com/video/14805355",
         "youtube": null
       }
     },
