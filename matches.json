@@ -3099,14 +3099,14 @@
     {
       "id": "115548147900750241",
       "start_time": "2026-08-22T10:00:00Z",
-      "status": "inProgress",
+      "status": "completed",
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
       "team_a": "KRX",
       "team_b": "DNS",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 0,
+      "score_b": 2,
       "full_vod": null,
       "highlights": {
         "soop": null,
