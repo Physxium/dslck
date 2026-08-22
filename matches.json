@@ -3057,7 +3057,7 @@
       "highlights": {
         "soop": "https://vod.sooplive.com/player/204929495",
         "chzzk": "https://chzzk.naver.com/video/14805355",
-        "youtube": null
+        "youtube": "https://www.youtube.com/watch?v=_ceNGeDWMgU"
       }
     },
     {
@@ -3081,12 +3081,12 @@
     {
       "id": "115548147900619049",
       "start_time": "2026-08-22T08:00:00Z",
-      "status": "unstarted",
+      "status": "inProgress",
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
-      "team_a": "DK",
-      "team_b": "GEN",
+      "team_a": "GEN",
+      "team_b": "DK",
       "score_a": null,
       "score_b": null,
       "full_vod": null,
