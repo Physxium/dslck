@@ -3081,14 +3081,14 @@
     {
       "id": "115548147900619049",
       "start_time": "2026-08-22T08:00:00Z",
-      "status": "inProgress",
+      "status": "completed",
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
       "team_a": "GEN",
       "team_b": "DK",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 1,
+      "score_b": 2,
       "full_vod": null,
       "highlights": {
         "soop": null,
@@ -3099,7 +3099,7 @@
     {
       "id": "115548147900750241",
       "start_time": "2026-08-22T10:00:00Z",
-      "status": "unstarted",
+      "status": "inProgress",
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
