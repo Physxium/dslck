@@ -3089,7 +3089,7 @@
       "team_b": "DK",
       "score_a": 1,
       "score_b": 2,
-      "full_vod": null,
+      "full_vod": "https://lolesports.com/vod/115548147900619049/1",
       "highlights": {
         "soop": "https://vod.sooplive.com/player/205024471",
         "chzzk": "https://chzzk.naver.com/video/14823117",
@@ -3107,10 +3107,10 @@
       "team_b": "DNS",
       "score_a": 0,
       "score_b": 2,
-      "full_vod": null,
+      "full_vod": "https://lolesports.com/vod/115548147900750241/1",
       "highlights": {
         "soop": null,
-        "chzzk": null,
+        "chzzk": "https://chzzk.naver.com/video/14825770",
         "youtube": null
       }
     },
