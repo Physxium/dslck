@@ -3135,14 +3135,14 @@
     {
       "id": "115548147900750229",
       "start_time": "2026-08-23T10:00:00Z",
-      "status": "inProgress",
+      "status": "completed",
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
       "team_a": "NS",
       "team_b": "BFX",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 2,
+      "score_b": 1,
       "full_vod": null,
       "highlights": {
         "soop": null,
