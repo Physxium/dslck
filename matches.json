@@ -3111,20 +3111,20 @@
       "highlights": {
         "soop": "https://vod.sooplive.com/player/205041571",
         "chzzk": "https://chzzk.naver.com/video/14825770",
-        "youtube": null
+        "youtube": "https://www.youtube.com/watch?v=sPHpbAQYyqA"
       }
     },
     {
       "id": "115548147900553481",
       "start_time": "2026-08-23T08:00:00Z",
-      "status": "inProgress",
+      "status": "completed",
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
       "team_a": "T1",
       "team_b": "HLE",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 0,
+      "score_b": 2,
       "full_vod": null,
       "highlights": {
         "soop": null,
@@ -3135,12 +3135,12 @@
     {
       "id": "115548147900750229",
       "start_time": "2026-08-23T10:00:00Z",
-      "status": "unstarted",
+      "status": "inProgress",
       "competition": "LCK",
       "category": "13주 차",
       "best_of": 3,
-      "team_a": "BFX",
-      "team_b": "NS",
+      "team_a": "NS",
+      "team_b": "BFX",
       "score_a": null,
       "score_b": null,
       "full_vod": null,
