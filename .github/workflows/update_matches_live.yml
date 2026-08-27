@@ -1,23 +1,11 @@
-name: Update LCK matches
+name: Update LCK live matches
 
 on:
   workflow_dispatch:
 
   schedule:
-    # KST 01:00
-    - cron: "0 16 * * *"
-
-    # KST 02:00
-    - cron: "0 17 * * *"
-
-    # KST 07:00
-    - cron: "0 22 * * *"
-
-    # KST 15:00 ~ 23:30, every 30 minutes
-    - cron: "0,30 6-14 * * *"
-
-    # KST 24:00
-    - cron: "0 15 * * *"
+    # KST 17:00 ~ 20:50, every 10 minutes
+    - cron: "0,10,20,30,40,50 8-11 * * *"
 
 permissions:
   contents: write
@@ -36,20 +24,10 @@ jobs:
           python-version: "3.13"
 
       - name: Install dependencies
-        run: pip install requests yt-dlp
+        run: pip install requests
 
       - name: Update matches
         run: python scripts/update_matches.py
-
-      - name: Update YouTube highlights
-        run: python scripts/update_youtube.py
-
-      - name: Update CHZZK highlights
-        run: python scripts/update_chzzk.py
-
-      - name: Update SOOP highlights
-        run: python scripts/update_soop.py
-
 
       - name: Commit changes
         run: |
@@ -66,4 +44,3 @@ jobs:
 
           git pull --rebase origin main
           git push
-

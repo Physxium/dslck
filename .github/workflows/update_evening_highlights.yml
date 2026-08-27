@@ -1,0 +1,55 @@
+name: Update LCK evening highlights
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # KST 21:00 ~ 00:45, every 15 minutes
+    - cron: "0,15,30,45 12-15 * * *"
+
+    # KST 01:00 final check
+    - cron: "0 16 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update matches
+        run: python scripts/update_matches.py
+
+      - name: Update CHZZK highlights
+        run: python scripts/update_chzzk.py
+
+      - name: Update SOOP highlights
+        run: python scripts/update_soop.py
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add matches.json
+          git commit -m "Update LCK evening highlights"
+
+          git pull --rebase origin main
+          git push
