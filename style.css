@@ -1,0 +1,828 @@
+:root {
+            color-scheme: dark;
+
+            --bg: #000000;
+
+            --panel: #1c1c1e;
+            --panel-soft: #242426;
+            --panel-strong: #2c2c2e;
+
+            --text: #f5f5f7;
+            --muted: #8e8e93;
+            --muted-soft: #636366;
+
+            --line: rgba(255, 255, 255, 0.08);
+            --line-strong: rgba(255, 255, 255, 0.12);
+
+            --accent: #f5f5f7;
+            --accent-text: #111111;
+
+            --button: #2c2c2e;
+            --button-hover: #3a3a3c;
+
+            --disabled: #242426;
+
+            --live: #ff453a;
+            --live-soft: rgba(255, 69, 58, 0.12);
+            --live-line: rgba(255, 69, 58, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            background: var(--bg);
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "SF Pro Text",
+                "Pretendard",
+                "Segoe UI",
+                sans-serif;
+
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        button,
+        a {
+            font: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            appearance: none;
+        }
+
+        .wrap {
+            width: min(780px, calc(100% - 28px));
+            margin: 0 auto;
+            padding: 32px 0 110px;
+        }
+
+        /* ------------------------------
+           Header
+        ------------------------------ */
+
+        header {
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            margin: 0 0 7px;
+
+            font-size: 25px;
+            font-weight: 750;
+            letter-spacing: -0.035em;
+        }
+
+        .subtitle {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+            line-height: 1.55;
+            letter-spacing: -0.01em;
+        }
+
+        .developer {
+            margin: 8px 0 0;
+
+            color: var(--muted-soft);
+
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .developer a {
+            color: var(--muted);
+            text-decoration: none;
+
+            transition: color 0.15s ease;
+        }
+
+        .developer a:hover {
+            color: var(--text);
+        }
+
+        /* ------------------------------
+           Tabs
+        ------------------------------ */
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 3px;
+
+            padding: 3px;
+            margin: 22px 0 16px;
+
+            background: rgba(118, 118, 128, 0.24);
+
+            border-radius: 11px;
+        }
+
+        .tab-btn {
+            border: 0;
+            border-radius: 8px;
+
+            padding: 9px 10px;
+
+            background: transparent;
+            color: var(--muted);
+
+            cursor: pointer;
+
+            font-size: 13px;
+            font-weight: 650;
+
+            transition:
+                background 0.15s ease,
+                color 0.15s ease,
+                box-shadow 0.15s ease;
+        }
+
+        .tab-btn.active {
+            background: #3a3a3c;
+            color: var(--text);
+
+            box-shadow:
+                0 1px 3px rgba(0, 0, 0, 0.32),
+                0 0 0 0.5px rgba(255, 255, 255, 0.04);
+        }
+
+        /* ------------------------------
+           Team Filters
+        ------------------------------ */
+
+        .filter-label {
+            margin: 0 0 8px 2px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+            font-weight: 650;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            padding: 0 0 13px;
+        }
+
+        .filter-btn {
+            flex: 1 1 calc(20% - 7px);
+
+            min-width: 58px;
+
+            border: 1px solid var(--line);
+            border-radius: 999px;
+
+            padding: 7px 11px;
+
+            background: var(--panel);
+            color: var(--muted);
+
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: 550;
+
+            transition:
+                background 0.15s ease,
+                color 0.15s ease,
+                border-color 0.15s ease;
+        }
+
+        .filter-btn:hover {
+            background: var(--panel-soft);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--accent-text);
+
+            border-color: var(--accent);
+
+            font-weight: 700;
+        }
+
+        /* ------------------------------
+           Date
+        ------------------------------ */
+
+        .date-group {
+            margin-top: 25px;
+        }
+
+        .date-title {
+            margin: 0 0 9px 3px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        /* ------------------------------
+           Match Card
+        ------------------------------ */
+
+        .match-card {
+            margin-bottom: 12px;
+            padding: 17px;
+
+            background: var(--panel);
+
+            border: 1px solid var(--line);
+            border-radius: 19px;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 15px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+            font-weight: 550;
+        }
+
+        .teams {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 14px;
+        }
+
+        .team {
+            font-size: 20px;
+            font-weight: 750;
+            letter-spacing: -0.03em;
+        }
+
+        .team.right {
+            text-align: right;
+        }
+
+        .versus {
+            color: var(--muted-soft);
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 0.04em;
+        }
+
+        /* ------------------------------
+           Score / LIVE
+        ------------------------------ */
+
+        .score-row {
+            display: flex;
+            justify-content: center;
+
+            min-height: 34px;
+
+            margin-bottom: 15px;
+        }
+
+        .score-btn {
+            min-width: 116px;
+
+            border: 1px solid var(--line);
+            border-radius: 10px;
+
+            padding: 7px 12px;
+
+            background: var(--panel-strong);
+            color: var(--text);
+
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: 650;
+
+            transition:
+                background 0.15s ease,
+                transform 0.12s ease;
+        }
+
+        .score-btn:hover {
+            background: #3a3a3c;
+        }
+
+        .score-btn:active {
+            transform: scale(0.97);
+        }
+
+        .live-status {
+            min-width: 116px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 6px;
+
+            padding: 7px 12px;
+
+            border: 1px solid var(--live-line);
+            border-radius: 10px;
+
+            background: var(--live-soft);
+            color: var(--live);
+
+            font-size: 12px;
+            font-weight: 750;
+
+            letter-spacing: 0.02em;
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                background 0.15s ease,
+                transform 0.12s ease;
+        }
+
+        .live-status:hover {
+            background: rgba(255, 69, 58, 0.18);
+        }
+
+        .live-status:active {
+            transform: scale(0.97);
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+
+            flex: 0 0 7px;
+
+            border-radius: 50%;
+
+            background: var(--live);
+        }
+
+        .live-play {
+            margin-left: 2px;
+
+            font-size: 9px;
+        }
+
+        /* ------------------------------
+           Media Area
+        ------------------------------ */
+
+        .media-area {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 0.9fr) minmax(0, 1.45fr);
+
+            gap: 11px;
+
+            padding-top: 14px;
+
+            border-top: 1px solid var(--line);
+        }
+
+        .media-column {
+            min-width: 0;
+        }
+
+        .media-column+.media-column {
+            padding-left: 11px;
+
+            border-left: 1px solid var(--line);
+        }
+
+        .media-label {
+            margin-bottom: 8px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+            font-weight: 650;
+
+            letter-spacing: 0.055em;
+            line-height: 1;
+        }
+
+        /* ------------------------------
+           Full VOD
+        ------------------------------ */
+
+        .full-vod-box {
+            min-height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 4px 0 2px;
+        }
+
+        .full-vod-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            gap: 1px;
+        }
+
+        .full-vod-pending {
+            color: #545458;
+
+            font-size: 9px;
+            font-weight: 550;
+            line-height: 1.2;
+        }
+
+        .full-vod-text {
+            color: var(--text);
+
+            font-size: 12px;
+            font-weight: 650;
+
+            letter-spacing: 0.025em;
+        }
+
+        .play-button {
+            width: 35px;
+            height: 35px;
+
+            flex: 0 0 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+            color: #000000;
+
+            text-decoration: none;
+
+            transition:
+                transform 0.15s ease,
+                opacity 0.15s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.06);
+        }
+
+        .play-button:active {
+            transform: scale(0.95);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+
+            margin-left: 2px;
+
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid currentColor;
+        }
+
+        .full-vod-box.pending-vod {
+            color: var(--muted-soft);
+        }
+
+        .play-button.disabled {
+            background: var(--panel-strong);
+            color: var(--muted-soft);
+
+            pointer-events: none;
+        }
+
+        .pending-vod .full-vod-text {
+            color: var(--muted-soft);
+        }
+
+        /* ------------------------------
+           Highlights
+        ------------------------------ */
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 6px;
+        }
+
+        .highlight-button,
+        .pending {
+            min-width: 0;
+            min-height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 6px 4px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            font-size: 11px;
+            font-weight: 650;
+        }
+
+        .highlight-button {
+            border: 1px solid var(--line);
+
+            background: var(--button);
+            color: var(--text);
+
+            text-decoration: none;
+
+            transition:
+                background 0.15s ease,
+                transform 0.12s ease;
+        }
+
+        .highlight-button:hover {
+            background: var(--button-hover);
+        }
+
+        .highlight-button:active {
+            transform: scale(0.97);
+        }
+
+        .pending {
+            flex-direction: column;
+
+            gap: 2px;
+
+            border: 1px solid rgba(255, 255, 255, 0.04);
+
+            background: var(--disabled);
+            color: var(--muted-soft);
+
+            cursor: default;
+        }
+
+        .pending small {
+            color: #545458;
+
+            font-size: 9px;
+            font-weight: 550;
+        }
+
+        /* ------------------------------
+           Upcoming
+        ------------------------------ */
+
+        .upcoming-card .teams {
+            margin-bottom: 0;
+        }
+
+        .upcoming-time {
+            margin-top: 12px;
+
+            color: var(--text);
+
+            text-align: center;
+
+            font-size: 12px;
+            font-weight: 650;
+        }
+
+        /* ------------------------------
+           More / Empty
+        ------------------------------ */
+
+        .more-wrap {
+            display: flex;
+            justify-content: center;
+
+            margin-top: 23px;
+        }
+
+        .more-btn {
+            min-width: 180px;
+
+            border: 1px solid var(--line);
+            border-radius: 12px;
+
+            padding: 11px 17px;
+
+            background: var(--panel);
+            color: var(--text);
+
+            cursor: pointer;
+
+            font-size: 13px;
+            font-weight: 650;
+
+            transition: background 0.15s ease;
+        }
+
+        .more-btn:hover {
+            background: var(--panel-soft);
+        }
+
+        .empty {
+            margin-top: 25px;
+
+            padding: 29px 18px;
+
+            border: 1px solid var(--line);
+            border-radius: 17px;
+
+            background: var(--panel);
+
+            color: var(--muted);
+
+            text-align: center;
+
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* ------------------------------
+           Footer
+        ------------------------------ */
+
+        footer {
+            margin-top: 34px;
+
+            color: var(--muted-soft);
+
+            text-align: center;
+
+            font-size: 10px;
+            line-height: 1.65;
+        }
+
+        /* ------------------------------
+           Floating Support
+        ------------------------------ */
+
+        .floating-bar {
+            position: fixed;
+
+            left: 50%;
+            bottom: calc(14px + env(safe-area-inset-bottom));
+
+            transform: translateX(-50%);
+
+            width: min(260px, calc(100% - 40px));
+
+            padding: 4px;
+
+            background: rgba(44, 44, 46, 0.94);
+
+            border: 1px solid var(--line-strong);
+            border-radius: 14px;
+
+            box-shadow:
+                0 8px 28px rgba(0, 0, 0, 0.45);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            z-index: 1000;
+        }
+
+        .floating-link {
+            min-width: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 12px;
+
+            border-radius: 10px;
+
+            color: var(--text);
+
+            font-size: 12px;
+            font-weight: 650;
+
+            text-decoration: none;
+
+            white-space: nowrap;
+
+            transition:
+                background 0.15s ease,
+                transform 0.12s ease;
+        }
+
+        .floating-link:hover {
+            background: var(--button-hover);
+        }
+
+        .floating-link:active {
+            transform: scale(0.97);
+        }
+
+        .floating-link.support {
+            background: var(--text);
+            color: var(--accent-text);
+        }
+
+        .floating-link.support:hover {
+            background: #e5e5e7;
+        }
+
+        /* ------------------------------
+           Responsive
+        ------------------------------ */
+
+        @media (max-width: 420px) {
+
+            .floating-bar {
+                width: min(240px, calc(100% - 32px));
+                bottom: calc(10px + env(safe-area-inset-bottom));
+            }
+
+            .floating-link {
+                padding: 10px 8px;
+                font-size: 11px;
+            }
+
+            .filter-btn {
+                flex-basis: calc(25% - 7px);
+            }
+
+            .match-card {
+                padding: 16px;
+            }
+
+            .media-area {
+                grid-template-columns:
+                    minmax(0, 0.85fr) minmax(0, 1.5fr);
+            }
+
+            .media-column+.media-column {
+                padding-left: 9px;
+            }
+
+            .highlight-grid {
+                gap: 5px;
+            }
+
+            .highlight-button,
+            .pending {
+                font-size: 10px;
+            }
+        }
+
+        @media (min-width: 640px) {
+
+            .wrap {
+                padding-top: 42px;
+            }
+
+            h1 {
+                font-size: 29px;
+            }
+
+            .filter-btn {
+                flex-basis: calc(16.666% - 7px);
+            }
+
+            .match-card {
+                padding: 19px 21px;
+            }
+
+            .team {
+                font-size: 22px;
+            }
+
+            .media-area {
+                grid-template-columns:
+                    minmax(0, 0.8fr) minmax(0, 1.6fr);
+            }
+        }
