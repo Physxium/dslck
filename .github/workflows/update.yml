@@ -1,0 +1,81 @@
+name: Update LCK data
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # KST 17:05 ~ 20:50, every 15 minutes
+    - cron: "5,20,35,50 8-11 * * *"
+
+    # KST 21:05
+    - cron: "5 12 * * *"
+
+    # KST 21:20 ~ 00:50, every 15 minutes
+    - cron: "20,35,50 12 * * *"
+    - cron: "5,20,35,50 13-15 * * *"
+
+    # KST 01:05 final check
+    - cron: "5 16 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: pip install requests yt-dlp
+
+      - name: Update matches
+        run: python scripts/update_matches.py
+
+      - name: Update YouTube highlights
+        if: |
+          github.event_name == 'workflow_dispatch' ||
+          github.event.schedule == '5,20,35,50 8-11 * * *' ||
+          github.event.schedule == '5 12 * * *'
+        run: python scripts/update_youtube.py
+
+      - name: Update CHZZK highlights
+        if: |
+          github.event_name == 'workflow_dispatch' ||
+          github.event.schedule == '5 12 * * *' ||
+          github.event.schedule == '20,35,50 12 * * *' ||
+          github.event.schedule == '5,20,35,50 13-15 * * *' ||
+          github.event.schedule == '5 16 * * *'
+        run: python scripts/update_chzzk.py
+
+      - name: Update SOOP highlights
+        if: |
+          github.event_name == 'workflow_dispatch' ||
+          github.event.schedule == '5 12 * * *' ||
+          github.event.schedule == '20,35,50 12 * * *' ||
+          github.event.schedule == '5,20,35,50 13-15 * * *' ||
+          github.event.schedule == '5 16 * * *'
+        run: python scripts/update_soop.py
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add matches.json
+          git commit -m "Update LCK data"
+
+          git pull --rebase origin main
+          git push
