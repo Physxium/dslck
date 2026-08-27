@@ -5,10 +5,10 @@ on:
 
   schedule:
     # KST 17:00 ~ 19:45, every 15 minutes
-    - cron: "0,15,30,45 8-10 * * *"
+    - cron: "0,15,30,45 8-11 * * *"
 
     # KST 20:00 final check
-    - cron: "0 11 * * *"
+    - cron: "0 12 * * *"
 
 permissions:
   contents: write
