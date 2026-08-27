@@ -3179,10 +3179,10 @@
       "team_b": "NS",
       "score_a": 3,
       "score_b": 1,
-      "full_vod": null,
+      "full_vod": "https://lolesports.com/vod/117030752644841577/1",
       "highlights": {
-        "soop": null,
-        "chzzk": null,
+        "soop": "https://vod.sooplive.com/player/205479703",
+        "chzzk": "https://chzzk.naver.com/video/14903375",
         "youtube": null
       }
     },
