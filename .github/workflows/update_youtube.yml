@@ -1,0 +1,49 @@
+name: Update LCK YouTube highlights
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # KST 17:00 ~ 19:45, every 15 minutes
+    - cron: "0,15,30,45 8-10 * * *"
+
+    # KST 20:00 final check
+    - cron: "0 11 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        run: pip install yt-dlp
+
+      - name: Update YouTube highlights
+        run: python scripts/update_youtube.py
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add matches.json
+          git commit -m "Update LCK YouTube highlights"
+
+          git pull --rebase origin main
+          git push
