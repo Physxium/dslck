@@ -26,8 +26,7 @@ MATCHING_START = datetime(
     tzinfo=timezone.utc
 )
 
-MIN_DELAY = timedelta(hours=18)
-MAX_DELAY = timedelta(hours=30)
+RECENT_LIMIT = timedelta(hours=30)
 
 YOUTUBE_PLAYLIST = (
     "https://www.youtube.com/playlist"
@@ -76,12 +75,10 @@ def parse_match_time(value):
 
 
 # =========================================================
-# 제목 판정
+# 팀명 판정
 # =========================================================
 
 def contains_team(title, team):
-
-    title_upper = title.upper()
 
     pattern = (
         rf"(?<![A-Z0-9])"
@@ -92,7 +89,7 @@ def contains_team(title, team):
     return bool(
         re.search(
             pattern,
-            title_upper
+            title.upper()
         )
     )
 
@@ -112,23 +109,45 @@ def teams_match(title, match):
     )
 
 
-def is_match_highlight(title):
+# =========================================================
+# 제목 판정
+# =========================================================
 
-    if "하이라이트" not in title:
+def is_regular_season(match):
+
+    return (
+        "주 차"
+        in match.get("category", "")
+    )
+
+
+def get_regular_match_number(title):
+
+    match = re.search(
+        r"매치\s*(\d+)\s*하이라이트",
+        title
+    )
+
+    if not match:
+        return None
+
+    return int(
+        match.group(1)
+    )
+
+
+def is_postseason_highlight(title):
+
+    # 반드시 매치 하이라이트 포함
+    if "매치 하이라이트" not in title:
         return False
 
-    title_lower = title.lower()
-
-    # GAME 1 / Game 2 / game3 등 제외
+    # 정규리그 형식:
+    # 매치 49 하이라이트
+    # 매치130 하이라이트
+    # → 제외
     if re.search(
-        r"\bgame\s*\d+\b",
-        title_lower
-    ):
-        return False
-
-    # 게임 1 / 게임2 등 제외
-    if re.search(
-        r"게임\s*\d+",
+        r"매치\s*\d+\s*하이라이트",
         title
     ):
         return False
@@ -137,12 +156,16 @@ def is_match_highlight(title):
 
 
 # =========================================================
-# 매칭 대상 경기
+# 대상 경기
 # =========================================================
 
 def get_targets(matches):
 
     targets = []
+
+    now = datetime.now(
+        timezone.utc
+    )
 
     for match in matches:
 
@@ -156,27 +179,32 @@ def get_targets(matches):
         if match_start < MATCHING_START:
             continue
 
+        if match_start > now:
+            continue
+
+        # 경기 시작 후 30시간까지만 자동 탐색
+        if now - match_start > RECENT_LIMIT:
+            continue
+
         highlights = match.get(
             "highlights",
             {}
         )
 
-        # 이미 YouTube 링크가 있으면 건드리지 않음
         if highlights.get("youtube"):
             continue
 
         targets.append(match)
 
     targets.sort(
-        key=lambda m: m["start_time"],
-        reverse=True
+        key=lambda m: m["start_time"]
     )
 
     return targets
 
 
 # =========================================================
-# YouTube
+# YouTube 재생목록
 # =========================================================
 
 def fetch_playlist():
@@ -213,67 +241,64 @@ def fetch_playlist():
     ]
 
 
-VIDEO_DETAIL_CACHE = {}
+# =========================================================
+# 정규리그 매칭
+# =========================================================
 
+def build_regular_matches(matches):
 
-def fetch_video_detail(video_id):
+    regular = []
 
-    if video_id in VIDEO_DETAIL_CACHE:
-        return VIDEO_DETAIL_CACHE[
-            video_id
-        ]
+    for match in matches:
 
-    url = (
-        "https://www.youtube.com/watch?v="
-        f"{video_id}"
-    )
+        if match.get("status") != "completed":
+            continue
 
-    options = {
-        "quiet": True,
-        "no_warnings": True,
-        "skip_download": True
-    }
-
-    try:
-
-        with yt_dlp.YoutubeDL(
-            options
-        ) as ydl:
-
-            detail = ydl.extract_info(
-                url,
-                download=False
-            )
-
-    except Exception as error:
-
-        print(
-            f"  [YOUTUBE] 상세정보 조회 실패 "
-            f"{video_id}: {error}"
+        match_start = parse_match_time(
+            match["start_time"]
         )
 
-        detail = None
+        if match_start < MATCHING_START:
+            continue
 
-    VIDEO_DETAIL_CACHE[
-        video_id
-    ] = detail
+        if not is_regular_season(
+            match
+        ):
+            continue
 
-    return detail
+        regular.append(match)
 
-
-# =========================================================
-# 경기 ↔ 영상 매칭
-# =========================================================
-
-def find_video(match, playlist):
-
-    match_start = parse_match_time(
-        match["start_time"]
+    regular.sort(
+        key=lambda m: m["start_time"]
     )
 
-    title_candidates = []
+    return regular
 
-    # 먼저 제목만으로 후보를 좁힘
+
+def find_regular_video(
+    match,
+    playlist,
+    regular_matches
+):
+
+    try:
+        match_index = next(
+            i
+            for i, item in enumerate(
+                regular_matches
+            )
+            if item["id"] == match["id"]
+        )
+
+    except StopIteration:
+        return None
+
+    expected_number = (
+        match_index + 1
+    )
+
+    candidates = []
+
     for video in playlist:
 
         title = video.get(
@@ -284,14 +309,21 @@ def find_video(match, playlist):
         if not title:
             continue
 
-        if not is_match_highlight(
-            title
-        ):
-            continue
-
         if not teams_match(
             title,
             match
+        ):
+            continue
+
+        match_number = (
+            get_regular_match_number(
+                title
+            )
+        )
+
+        if (
+            match_number
+            != expected_number
         ):
             continue
 
@@ -302,70 +334,69 @@ def find_video(match, playlist):
         if not video_id:
             continue
 
-        title_candidates.append(
+        candidates.append(
             (
                 video_id,
                 title
             )
         )
 
-    if not title_candidates:
+    if not candidates:
         return None
+
+    return candidates[0]
+
+
+# =========================================================
+# 플레이-인 / 플레이오프 / 결승 등
+# =========================================================
+
+def find_postseason_video(
+    match,
+    playlist
+):
 
     candidates = []
 
-    # 제목 후보에 대해서만 실제 업로드 시간 확인
-    for (
-        video_id,
-        title
-    ) in title_candidates:
+    for video in playlist:
 
-        detail = fetch_video_detail(
-            video_id
+        title = video.get(
+            "title",
+            ""
         )
 
-        if not detail:
+        if not title:
             continue
 
-        timestamp = detail.get(
-            "timestamp"
-        )
-
-        if timestamp is None:
+        if not teams_match(
+            title,
+            match
+        ):
             continue
 
-        upload_time = datetime.fromtimestamp(
-            timestamp,
-            tz=timezone.utc
-        )
-
-        diff = (
-            upload_time
-            - match_start
-        )
-
-        if diff < MIN_DELAY:
+        if not is_postseason_highlight(
+            title
+        ):
             continue
 
-        if diff > MAX_DELAY:
+        video_id = video.get(
+            "id"
+        )
+
+        if not video_id:
             continue
 
         candidates.append(
             (
-                diff,
-                title,
                 video_id,
-                upload_time
+                title
             )
         )
 
     if not candidates:
         return None
 
-    candidates.sort(
-        key=lambda item: item[0]
-    )
-
+    # 재생목록의 최신 후보 우선
     return candidates[0]
 
 
@@ -392,11 +423,15 @@ def main():
     print("==============================")
 
     print(
-        f"링크 없는 완료 경기: {len(targets)}"
+        f"최근 30시간 내 "
+        f"링크 없는 완료 경기: "
+        f"{len(targets)}"
     )
 
     if not targets:
-        print("업데이트 대상 없음")
+        print(
+            "업데이트 대상 없음"
+        )
         return
 
     playlist = fetch_playlist()
@@ -404,6 +439,12 @@ def main():
     print(
         f"[YOUTUBE] 재생목록 영상: "
         f"{len(playlist)}개"
+    )
+
+    regular_matches = (
+        build_regular_matches(
+            matches
+        )
     )
 
     changed = 0
@@ -438,9 +479,34 @@ def main():
             )
         )
 
-        result = find_video(
-            match,
-            playlist
+        if is_regular_season(
+            match
+        ):
+
+            result = (
+                find_regular_video(
+                    match,
+                    playlist,
+                    regular_matches
+                )
+            )
+
+            mode = "정규리그"
+
+        else:
+
+            result = (
+                find_postseason_video(
+                    match,
+                    playlist
+                )
+            )
+
+            mode = "포스트시즌"
+
+        print(
+            "  매칭 방식:",
+            mode
         )
 
         if not result:
@@ -452,12 +518,7 @@ def main():
 
             continue
 
-        (
-            diff,
-            title,
-            video_id,
-            upload_time
-        ) = result
+        video_id, title = result
 
         url = (
             "https://www.youtube.com/"
@@ -470,25 +531,6 @@ def main():
         )
 
         print(
-            "  업로드:",
-            upload_time
-            .astimezone(KST)
-            .strftime(
-                "%Y-%m-%d %H:%M KST"
-            )
-        )
-
-        print(
-            "  경기 후:",
-            round(
-                diff.total_seconds()
-                / 3600,
-                2
-            ),
-            "시간"
-        )
-
-        print(
             "  URL:",
             url
         )
@@ -496,7 +538,9 @@ def main():
         if "highlights" not in match:
             match["highlights"] = {}
 
-        match["highlights"]["youtube"] = url
+        match["highlights"][
+            "youtube"
+        ] = url
 
         changed += 1
 
@@ -505,8 +549,14 @@ def main():
 
     if changed == 0:
 
-        print("YouTube 변경사항 없음")
-        print("==============================")
+        print(
+            "YouTube 변경사항 없음"
+        )
+
+        print(
+            "=============================="
+        )
+
         return
 
     save_matches(
@@ -514,14 +564,17 @@ def main():
     )
 
     print(
-        f"YouTube 링크 추가: {changed}개"
+        f"YouTube 링크 추가: "
+        f"{changed}개"
     )
 
     print(
         "matches.json 업데이트 완료"
     )
 
-    print("==============================")
+    print(
+        "=============================="
+    )
 
 
 if __name__ == "__main__":
