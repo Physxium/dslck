@@ -3163,9 +3163,9 @@
       "score_b": 3,
       "full_vod": "https://lolesports.com/vod/117030752644841571/1",
       "highlights": {
-        "soop": null,
-        "chzzk": null,
-        "youtube": null
+        "soop": "https://vod.sooplive.com/player/205398775",
+        "chzzk": "https://chzzk.naver.com/video/14889236",
+        "youtube": "https://www.youtube.com/watch?v=JIyaQf9py8c"
       }
     },
     {

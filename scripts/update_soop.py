@@ -1,221 +1,488 @@
 import json
 import re
-from pathlib import Path
-
 import requests
 
+from pathlib import Path
+from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
-API_URL = "https://api-channel.sooplive.com/v1.1/channel/aflol/vod/normal"
 
-MATCHES_PATH = Path(__file__).resolve().parent.parent / "matches.json"
+# =========================================================
+# 설정
+# =========================================================
 
-REGULAR_SEASON_START = "2026-04-01T00:00:00Z"
-SOOP_REGULAR_SEASON_START = "2026-04-01 00:00:00"
+MATCHES_PATH = (
+    Path(__file__).resolve().parent.parent
+    / "matches.json"
+)
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0",
-    "Referer": "https://www.sooplive.com/station/aflol/vod/normal?page=1",
+KST = ZoneInfo("Asia/Seoul")
+
+MATCHING_START = datetime(
+    2026,
+    4,
+    1,
+    tzinfo=timezone.utc
+)
+
+MAX_DELAY = timedelta(hours=8)
+
+SOOP_API = (
+    "https://api-channel.sooplive.com/v1.1/"
+    "channel/aflol/vod/normal"
+)
+
+SOOP_HEADERS = {
+    "User-Agent": "Mozilla/5.0"
 }
 
+MAX_PAGES = 3
+
+
+# =========================================================
+# matches.json
+# =========================================================
 
 def load_matches():
-    with open(MATCHES_PATH, "r", encoding="utf-8") as f:
+
+    with open(
+        MATCHES_PATH,
+        "r",
+        encoding="utf-8"
+    ) as f:
         return json.load(f)
 
 
 def save_matches(data):
-    with open(MATCHES_PATH, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
 
-
-def contains_team(title, team):
-    pattern = rf"(?<![A-Z0-9]){re.escape(team.upper())}(?![A-Z0-9])"
-    return re.search(pattern, title.upper()) is not None
-
-
-def extract_match_number(title):
-    match = re.search(r"매치\s*(\d+)", title)
-
-    if not match:
-        return None
-
-    return int(match.group(1))
-
-
-def fetch_page(page):
-    params = {
-        "startDate": "",
-        "endDate": "",
-        "keyword": "",
-        "orderBy": "reg_date",
-        "perPage": 60,
-        "page": page,
-        "field": "title,contents,user_nick,user_id",
-    }
-
-    response = requests.get(
-        API_URL,
-        params=params,
-        headers=HEADERS,
-        timeout=60
-    )
-
-    response.raise_for_status()
-
-    return response.json()
-
-
-def main():
-    data = load_matches()
-    matches = data.get("matches", [])
-
-    regular_matches = [
-        m for m in matches
-        if m.get("status") == "completed"
-        and m.get("start_time", "") >= REGULAR_SEASON_START
-        and "주 차" in m.get("category", "")
-    ]
-
-    regular_matches.sort(
-        key=lambda m: m["start_time"]
-    )
-
-    print(f"매치 번호 대상 경기 수: {len(regular_matches)}")
-
-    if regular_matches:
-        first = regular_matches[0]
-
-        print(
-            f"매치 1 기준 확인: "
-            f"{first['start_time']} "
-            f"{first['team_a']} vs {first['team_b']}"
+    with open(
+        MATCHES_PATH,
+        "w",
+        encoding="utf-8"
+    ) as f:
+        json.dump(
+            data,
+            f,
+            ensure_ascii=False,
+            indent=2
         )
 
-    print()
 
-    updated_count = 0
-    mismatch_count = 0
-    found_match_numbers = set()
+# =========================================================
+# 시간
+# =========================================================
 
-    page = 1
-    max_pages = 100
-    stop_search = False
+def parse_match_time(value):
 
-    while page <= max_pages:
-        print(f"SOOP page {page} 확인 중...")
+    return datetime.fromisoformat(
+        value.replace("Z", "+00:00")
+    )
 
-        try:
-            response_data = fetch_page(page)
 
-        except requests.exceptions.RequestException as e:
-            print(f"[ERROR] page {page} 요청 실패")
-            print(e)
-            break
+def parse_soop_time(value):
 
-        videos = response_data.get("contents", [])
+    if not value:
+        return None
 
-        if not videos:
-            print("영상이 없어 종료합니다.")
-            break
+    try:
+        dt = datetime.fromisoformat(value)
 
-        for video in videos:
-            title_no = video.get("titleNo")
-            title = video.get("titleName")
-            reg_date = video.get("regDate")
-
-            # 2026 정규리그 시작 이전 영상까지 내려가면 탐색 종료
-            if reg_date and reg_date < SOOP_REGULAR_SEASON_START:
-                print(
-                    "2026 정규리그 이전 영상에 도달해 "
-                    "탐색을 종료합니다."
-                )
-                stop_search = True
-                break
-
-            if not title_no or not title:
-                continue
-
-            # 매치 전체 하이라이트만 대상
-            if "매치" not in title:
-                continue
-
-            if "하이라이트" not in title:
-                continue
-
-            if "2026 LCK" not in title:
-                continue
-
-            match_number = extract_match_number(title)
-
-            if match_number is None:
-                continue
-
-            index = match_number - 1
-
-            if index < 0 or index >= len(regular_matches):
-                continue
-
-            match = regular_matches[index]
-
-            team_a = match["team_a"]
-            team_b = match["team_b"]
-
-            if not (
-                contains_team(title, team_a)
-                and contains_team(title, team_b)
-            ):
-                print(
-                    f"[MISMATCH] 매치 {match_number}: "
-                    f"JSON={team_a} vs {team_b}"
-                )
-                print(
-                    f"           SOOP={title}"
-                )
-
-                mismatch_count += 1
-                continue
-
-            soop_url = (
-                f"https://vod.sooplive.com/player/{title_no}"
+        # SOOP regDate는 KST 기준인데
+        # timezone 정보가 없는 형태
+        if dt.tzinfo is None:
+            dt = dt.replace(
+                tzinfo=KST
             )
 
-            match.setdefault("highlights", {})
+        return dt
 
-            old_url = match["highlights"].get("soop")
+    except ValueError:
+        return None
 
-            match["highlights"]["soop"] = soop_url
 
-            found_match_numbers.add(match_number)
+# =========================================================
+# 제목 판정
+# =========================================================
 
-            if old_url != soop_url:
-                updated_count += 1
+def contains_team(title, team):
 
-                print(
-                    f"[MATCH] 매치 {match_number}: "
-                    f"{team_a} vs {team_b}"
-                )
+    title_upper = title.upper()
 
-        if stop_search:
-            break
+    pattern = (
+        rf"(?<![A-Z0-9])"
+        rf"{re.escape(team.upper())}"
+        rf"(?![A-Z0-9])"
+    )
 
-        if len(found_match_numbers) >= len(regular_matches):
-            print(
-                "모든 정규리그 매치 하이라이트를 찾았습니다."
+    return bool(
+        re.search(
+            pattern,
+            title_upper
+        )
+    )
+
+
+def teams_match(title, match):
+
+    return (
+        contains_team(
+            title,
+            match["team_a"]
+        )
+        and
+        contains_team(
+            title,
+            match["team_b"]
+        )
+    )
+
+
+def is_match_highlight(title):
+
+    if "하이라이트" not in title:
+        return False
+
+    title_lower = title.lower()
+
+    # GAME 1 / Game 2 / game3 등 제외
+    if re.search(
+        r"\bgame\s*\d+\b",
+        title_lower
+    ):
+        return False
+
+    # 게임 1 / 게임2 등 제외
+    if re.search(
+        r"게임\s*\d+",
+        title
+    ):
+        return False
+
+    return True
+
+
+# =========================================================
+# 매칭 대상 경기
+# =========================================================
+
+def get_targets(matches):
+
+    targets = []
+
+    for match in matches:
+
+        if match.get("status") != "completed":
+            continue
+
+        match_start = parse_match_time(
+            match["start_time"]
+        )
+
+        # 4월 이전 LCK Cup 제외
+        if match_start < MATCHING_START:
+            continue
+
+        highlights = match.get(
+            "highlights",
+            {}
+        )
+
+        # 이미 SOOP 링크가 있으면 건드리지 않음
+        if highlights.get("soop"):
+            continue
+
+        targets.append(match)
+
+    targets.sort(
+        key=lambda m: m["start_time"],
+        reverse=True
+    )
+
+    return targets
+
+
+# =========================================================
+# SOOP 영상 목록
+# =========================================================
+
+def fetch_soop_videos():
+
+    videos = []
+
+    for page in range(
+        1,
+        MAX_PAGES + 1
+    ):
+
+        print(
+            f"[SOOP] 영상 목록 {page}페이지 불러오는 중..."
+        )
+
+        params = {
+            "startDate": "",
+            "endDate": "",
+            "keyword": "",
+            "orderBy": "reg_date",
+            "perPage": 60,
+            "page": page,
+            "field": (
+                "title,contents,"
+                "user_nick,user_id"
             )
+        }
+
+        response = requests.get(
+            SOOP_API,
+            headers=SOOP_HEADERS,
+            params=params,
+            timeout=20
+        )
+
+        response.raise_for_status()
+
+        data = response.json()
+
+        page_videos = data.get(
+            "contents",
+            []
+        )
+
+        if not page_videos:
             break
 
-        page += 1
+        videos.extend(
+            page_videos
+        )
 
-    save_matches(data)
+    return videos
+
+
+# =========================================================
+# 경기 ↔ 영상 매칭
+# =========================================================
+
+def find_video(match, videos):
+
+    match_start = parse_match_time(
+        match["start_time"]
+    ).astimezone(KST)
+
+    candidates = []
+
+    for video in videos:
+
+        title = video.get(
+            "titleName",
+            ""
+        )
+
+        if not title:
+            continue
+
+        if not is_match_highlight(title):
+            continue
+
+        if not teams_match(
+            title,
+            match
+        ):
+            continue
+
+        upload_time = parse_soop_time(
+            video.get("regDate")
+        )
+
+        if not upload_time:
+            continue
+
+        diff = (
+            upload_time
+            - match_start
+        )
+
+        # 경기 시작 이전 영상 제외
+        if diff <= timedelta(0):
+            continue
+
+        # 경기 시작 후 8시간 초과 제외
+        if diff > MAX_DELAY:
+            continue
+
+        title_no = video.get(
+            "titleNo"
+        )
+
+        if not title_no:
+            continue
+
+        candidates.append(
+            (
+                diff,
+                title,
+                title_no,
+                upload_time
+            )
+        )
+
+    if not candidates:
+        return None
+
+    candidates.sort(
+        key=lambda item: item[0]
+    )
+
+    return candidates[0]
+
+
+# =========================================================
+# 실행
+# =========================================================
+
+def main():
+
+    data = load_matches()
+
+    matches = data.get(
+        "matches",
+        []
+    )
+
+    targets = get_targets(
+        matches
+    )
 
     print()
     print("==============================")
-    print(f"SOOP 링크 변경: {updated_count}개")
+    print("SOOP Highlight Update")
+    print("==============================")
     print(
-        f"이번 실행에서 찾은 매치: "
-        f"{len(found_match_numbers)}개"
+        f"링크 없는 완료 경기: {len(targets)}"
     )
-    print(f"팀 불일치: {mismatch_count}개")
+
+    if not targets:
+        print("업데이트 대상 없음")
+        return
+
+    videos = fetch_soop_videos()
+
+    print(
+        f"[SOOP] 불러온 영상: {len(videos)}개"
+    )
+
+    changed = 0
+
+    for match in targets:
+
+        team_a = match["team_a"]
+        team_b = match["team_b"]
+
+        start = parse_match_time(
+            match["start_time"]
+        ).astimezone(KST)
+
+        print()
+        print(
+            f"[SOOP] {team_a} vs {team_b}"
+        )
+
+        print(
+            "  경기 시작:",
+            start.strftime(
+                "%Y-%m-%d %H:%M KST"
+            )
+        )
+
+        print(
+            "  구분:",
+            match.get(
+                "category",
+                ""
+            )
+        )
+
+        result = find_video(
+            match,
+            videos
+        )
+
+        if not result:
+
+            print(
+                "  → 조건에 맞는 "
+                "하이라이트 없음"
+            )
+
+            continue
+
+        (
+            diff,
+            title,
+            title_no,
+            upload_time
+        ) = result
+
+        url = (
+            "https://vod.sooplive.com/"
+            f"player/{title_no}"
+        )
+
+        print(
+            "  → 매칭:",
+            title
+        )
+
+        print(
+            "  업로드:",
+            upload_time.strftime(
+                "%Y-%m-%d %H:%M KST"
+            )
+        )
+
+        print(
+            "  경기 후:",
+            round(
+                diff.total_seconds()
+                / 3600,
+                2
+            ),
+            "시간"
+        )
+
+        print(
+            "  URL:",
+            url
+        )
+
+        if "highlights" not in match:
+            match["highlights"] = {}
+
+        # 이미 있는 링크는 get_targets에서 제외되므로
+        # 여기서는 빈 항목만 채워짐
+        match["highlights"]["soop"] = url
+
+        changed += 1
+
+    print()
+    print("==============================")
+
+    if changed == 0:
+
+        print("SOOP 변경사항 없음")
+        print("==============================")
+        return
+
+    save_matches(
+        data
+    )
+
+    print(
+        f"SOOP 링크 추가: {changed}개"
+    )
+
+    print(
+        "matches.json 업데이트 완료"
+    )
+
     print("==============================")
 
 

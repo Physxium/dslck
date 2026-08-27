@@ -74,12 +74,28 @@ def convert_event(event, existing_match=None):
         if team_b.get("result"):
             score_b = team_b["result"].get("gameWins")
 
+    # ------------------------------
+    # Full VOD
+    # 기존 링크가 있으면 그대로 유지
+    # 없을 때만 hasVod를 확인해서 새로 생성
+    # ------------------------------
+
     full_vod = None
 
-    if "hasVod" in match.get("flags", []):
+    if existing_match:
+        full_vod = existing_match.get("full_vod")
+
+    if (
+        not full_vod
+        and "hasVod" in match.get("flags", [])
+    ):
         full_vod = f"https://lolesports.com/vod/{match_id}/1"
 
-    # 기존 하이라이트 링크가 있으면 보존
+    # ------------------------------
+    # Highlights
+    # 기존 링크가 있으면 그대로 유지
+    # ------------------------------
+
     highlights = {
         "soop": None,
         "chzzk": None,
@@ -87,7 +103,10 @@ def convert_event(event, existing_match=None):
     }
 
     if existing_match:
-        existing_highlights = existing_match.get("highlights", {})
+        existing_highlights = existing_match.get(
+            "highlights",
+            {}
+        )
 
         highlights["soop"] = existing_highlights.get("soop")
         highlights["chzzk"] = existing_highlights.get("chzzk")
@@ -158,33 +177,50 @@ def main():
             f"{TARGET_YEAR} 경기 확보"
         )
 
-        older_token = schedule.get("pages", {}).get("older")
+        older_token = schedule.get(
+            "pages",
+            {}
+        ).get("older")
 
         if not older_token:
             break
 
-        if years_on_page and max(years_on_page) < TARGET_YEAR:
+        if (
+            years_on_page
+            and max(years_on_page) < TARGET_YEAR
+        ):
             break
 
         page_token = older_token
         page_number += 1
 
         if page_number > 20:
-            print("페이지가 너무 많아 안전을 위해 중단합니다.")
+            print(
+                "페이지가 너무 많아 "
+                "안전을 위해 중단합니다."
+            )
             break
 
     matches = list(updated_matches.values())
-    matches.sort(key=lambda m: m["start_time"])
+
+    matches.sort(
+        key=lambda m: m["start_time"]
+    )
 
     output = {
         "matches": matches
     }
 
     # 기존 파일과 내용이 완전히 같으면 쓰지 않음
+
     old_output = None
 
     if MATCHES_PATH.exists():
-        with open(MATCHES_PATH, "r", encoding="utf-8") as f:
+        with open(
+            MATCHES_PATH,
+            "r",
+            encoding="utf-8"
+        ) as f:
             old_output = json.load(f)
 
     if old_output == output:
