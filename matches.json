@@ -3183,18 +3183,18 @@
       "highlights": {
         "soop": "https://vod.sooplive.com/player/205479703",
         "chzzk": "https://chzzk.naver.com/video/14903375",
-        "youtube": null
+        "youtube": "https://www.youtube.com/watch?v=6FKUyeQvouA"
       }
     },
     {
       "id": "117030752644841583",
       "start_time": "2026-08-28T08:00:00Z",
-      "status": "unstarted",
+      "status": "inProgress",
       "competition": "LCK",
       "category": "플레이-인",
       "best_of": 5,
-      "team_a": "BRO",
-      "team_b": "BFX",
+      "team_a": "BFX",
+      "team_b": "BRO",
       "score_a": null,
       "score_b": null,
       "full_vod": null,
