@@ -3219,18 +3219,18 @@
       "highlights": {
         "soop": "https://vod.sooplive.com/player/205671717",
         "chzzk": "https://chzzk.naver.com/video/14937639",
-        "youtube": null
+        "youtube": "https://www.youtube.com/watch?v=Y7FFqtZsdRQ"
       }
     },
     {
       "id": "117030752644841595",
       "start_time": "2026-08-30T08:00:00Z",
-      "status": "unstarted",
+      "status": "inProgress",
       "competition": "LCK",
       "category": "플레이오프",
       "best_of": 5,
-      "team_a": "DK",
-      "team_b": "KT",
+      "team_a": "KT",
+      "team_b": "DK",
       "score_a": null,
       "score_b": null,
       "full_vod": null,
