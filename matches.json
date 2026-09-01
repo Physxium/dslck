@@ -3243,18 +3243,18 @@
     {
       "id": "117030752644841601",
       "start_time": "2026-09-01T08:00:00Z",
-      "status": "inProgress",
+      "status": "completed",
       "competition": "LCK",
       "category": "플레이오프",
       "best_of": 5,
       "team_a": "GEN",
       "team_b": "KT",
-      "score_a": null,
-      "score_b": null,
-      "full_vod": null,
+      "score_a": 3,
+      "score_b": 0,
+      "full_vod": "https://lolesports.com/vod/117030752644841601/1",
       "highlights": {
         "soop": null,
-        "chzzk": null,
+        "chzzk": "https://chzzk.naver.com/video/14982810",
         "youtube": null
       }
     },
@@ -3320,7 +3320,7 @@
       "category": "플레이오프",
       "best_of": 5,
       "team_a": "TBD",
-      "team_b": "TBD",
+      "team_b": "GEN",
       "score_a": null,
       "score_b": null,
       "full_vod": null,
