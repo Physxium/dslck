@@ -36,7 +36,12 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6908864739979028"
         crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="physxium" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF813F"
+        data-position="Right" data-x_margin="18" data-y_margin="18">
+    </script>
 
 </head>
 
@@ -81,14 +86,6 @@
 
         <nav class="filters" id="filters"></nav>
 
-        <div class="ad-wrap">
-            <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-cO6s5S7EWSCvtNQZ" data-ad-width="320"
-                data-ad-height="50"></ins>
-        </div>
-        
-        <script type="text/javascript" src="//t1.kakaocdn.net/kas/static/ba.min.js" async></script>
-
-
         <section id="matches"></section>
 
 
@@ -107,13 +104,17 @@
 
 
     <nav class="floating-bar" aria-label="Support">
-
-        <a class="floating-link support" href="https://ctee.kr/place/physxium" target="_blank"
-            rel="noopener noreferrer">
+    
+        <button id="supportLink" class="floating-link support" type="button">
             유용했다면 ☕ 커피 후원
-        </a>
-
+        </button>
+    
     </nav>
+    
+    <a id="cteeSupport" class="ctee-support" href="https://ctee.kr/place/physxium" target="_blank" rel="noopener noreferrer"
+        hidden>
+        다른 방법으로 후원하기 ☕ 크티
+    </a>
 
 
         <script src="./app.js"></script>
