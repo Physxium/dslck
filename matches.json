@@ -3255,18 +3255,18 @@
       "highlights": {
         "soop": "https://vod.sooplive.com/player/205939665",
         "chzzk": "https://chzzk.naver.com/video/14982810",
-        "youtube": null
+        "youtube": "https://www.youtube.com/watch?v=bXx9fGhu9QY"
       }
     },
     {
       "id": "117030752644841607",
       "start_time": "2026-09-02T08:00:00Z",
-      "status": "unstarted",
+      "status": "inProgress",
       "competition": "LCK",
       "category": "플레이오프",
       "best_of": 5,
-      "team_a": "HLE",
-      "team_b": "T1",
+      "team_a": "T1",
+      "team_b": "HLE",
       "score_a": null,
       "score_b": null,
       "full_vod": null,
@@ -3350,7 +3350,7 @@
     },
     {
       "id": "117030752644841637",
-      "start_time": "2026-09-12T08:00:00Z",
+      "start_time": "2026-09-12T05:00:00Z",
       "status": "unstarted",
       "competition": "LCK",
       "category": "플레이오프",
@@ -3368,7 +3368,7 @@
     },
     {
       "id": "117030752644841643",
-      "start_time": "2026-09-13T08:00:00Z",
+      "start_time": "2026-09-13T05:00:00Z",
       "status": "unstarted",
       "competition": "LCK",
       "category": "결승",
