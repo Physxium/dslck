@@ -3297,19 +3297,19 @@
     {
       "id": "117030752644841625",
       "start_time": "2026-09-04T08:00:00Z",
-      "status": "inProgress",
+      "status": "completed",
       "competition": "LCK",
       "category": "플레이오프",
       "best_of": 5,
       "team_a": "KT",
       "team_b": "DK",
-      "score_a": null,
-      "score_b": null,
+      "score_a": 1,
+      "score_b": 3,
       "full_vod": null,
       "highlights": {
         "soop": null,
         "chzzk": null,
-        "youtube": null
+        "youtube": "https://www.youtube.com/watch?v=xQ2ZYI4XZL0"
       }
     },
     {
@@ -3337,7 +3337,7 @@
       "competition": "LCK",
       "category": "플레이오프",
       "best_of": 5,
-      "team_a": "TBD",
+      "team_a": "DK",
       "team_b": "T1",
       "score_a": null,
       "score_b": null,
