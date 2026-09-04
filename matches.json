@@ -3291,13 +3291,13 @@
       "highlights": {
         "soop": "https://vod.sooplive.com/player/206134461",
         "chzzk": "https://chzzk.naver.com/video/15016591",
-        "youtube": null
+        "youtube": "https://www.youtube.com/watch?v=Njhn-2JyoXQ"
       }
     },
     {
       "id": "117030752644841625",
       "start_time": "2026-09-04T08:00:00Z",
-      "status": "unstarted",
+      "status": "inProgress",
       "competition": "LCK",
       "category": "플레이오프",
       "best_of": 5,
