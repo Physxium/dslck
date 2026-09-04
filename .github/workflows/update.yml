@@ -3,19 +3,19 @@ name: Update LCK data
 on:
   workflow_dispatch:
 
-  schedule:
-    # KST 17:05 ~ 20:50, every 15 minutes
-    - cron: "5,20,35,50 8-11 * * *"
+  # schedule:
+  #   # KST 17:05 ~ 20:50, every 15 minutes
+  #   - cron: "5,20,35,50 8-11 * * *"
 
-    # KST 21:05
-    - cron: "5 12 * * *"
+  #   # KST 21:05
+  #   - cron: "5 12 * * *"
 
-    # KST 21:20 ~ 00:50, every 15 minutes
-    - cron: "20,35,50 12 * * *"
-    - cron: "5,20,35,50 13-15 * * *"
+  #   # KST 21:20 ~ 00:50, every 15 minutes
+  #   - cron: "20,35,50 12 * * *"
+  #   - cron: "5,20,35,50 13-15 * * *"
 
-    # KST 01:05 final check
-    - cron: "5 16 * * *"
+  #   # KST 01:05 final check
+  #   - cron: "5 16 * * *"
 
 permissions:
   contents: write
