@@ -3307,20 +3307,20 @@
       "score_b": 3,
       "full_vod": "https://lolesports.com/vod/117030752644841625/1",
       "highlights": {
-        "soop": null,
+        "soop": "https://vod.sooplive.com/player/206216901",
         "chzzk": "https://chzzk.naver.com/video/15031460",
-        "youtube": null
+        "youtube": "https://www.youtube.com/watch?v=3cvQeyOEJr0"
       }
     },
     {
       "id": "117030752644841619",
       "start_time": "2026-09-05T08:00:00Z",
-      "status": "unstarted",
+      "status": "inProgress",
       "competition": "LCK",
       "category": "플레이오프",
       "best_of": 5,
-      "team_a": "GEN",
-      "team_b": "HLE",
+      "team_a": "HLE",
+      "team_b": "GEN",
       "score_a": null,
       "score_b": null,
       "full_vod": null,
