@@ -3359,22 +3359,22 @@
       "team_b": "T1",
       "score_a": 3,
       "score_b": 1,
-      "full_vod": null,
+      "full_vod": "https://lolesports.com/vod/117030752644841637/1",
       "highlights": {
         "soop": "https://vod.sooplive.com/player/206938601",
         "chzzk": "https://chzzk.naver.com/video/15160832",
-        "youtube": null
+        "youtube": "https://www.youtube.com/watch?v=zer8IFbB0TI"
       }
     },
     {
       "id": "117030752644841643",
       "start_time": "2026-09-13T05:00:00Z",
-      "status": "unstarted",
+      "status": "inProgress",
       "competition": "LCK",
       "category": "결승",
       "best_of": 5,
-      "team_a": "HLE",
-      "team_b": "GEN",
+      "team_a": "GEN",
+      "team_b": "HLE",
       "score_a": null,
       "score_b": null,
       "full_vod": null,
